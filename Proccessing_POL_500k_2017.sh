@@ -1,19 +1,19 @@
 #!/bin/bash
 
-# ICAO Poland 2017
+# ICAO Poland 2018
 
-NAME='icao_pol_2017'
+NAME='icao_pol_2018'
 GROUP='icao'
 CATEGORY='aero'
-PUBLISHED='09/2017'
+PUBLISHED='2018-08'
 ISO='pol'
 
 RAW=''$HOME'/server/Eanserver18/raster/tmp/BR/itcom_lpr/500k/raw'
 SHP=''$HOME'/server/Eanserver18/raster/tmp/BR/itcom_lpr/500k/shp'
 RGBA=''$HOME'/server/Eanserver18/raster/tmp/BR/itcom_lpr/500k/tif_rgba'
-ARCHIVE=''$HOME'/server/Eanserver18/raster/tmp/BR/itcom_lpr/500k/icao_'$ISO'_2017.tar.gz'
-CONVERTED=''$HOME'/server/Eanserver18/raster/tmp/BR/itcom_lpr/500k/icao_'$ISO'_2017'
-PACK=''$HOME'/server/Eanserver18/raster/tmp/BR/itcom_lpr/500k/icao_'$ISO'_2017/icao_'$ISO'_2017.pck*'
+ARCHIVE=''$HOME'/server/Eanserver18/raster/tmp/BR/itcom_lpr/500k/icao_'$ISO'_2018.tar.gz'
+CONVERTED=''$HOME'/server/Eanserver18/raster/tmp/BR/itcom_lpr/500k/icao_'$ISO'_2018'
+PACK=''$HOME'/server/Eanserver18/raster/tmp/BR/itcom_lpr/500k/icao_'$ISO'_2018/icao_'$ISO'_2018.pck*'
 
 mkdir $NAME
 mkdir tif_rgba
