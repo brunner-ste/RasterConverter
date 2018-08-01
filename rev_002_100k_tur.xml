@@ -1,0 +1,2861 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE Map[]>
+<Map srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over" background-color="#a1d2f3" font-directory="/ssd/TileMill/fonts">
+
+<Parameters>
+  <Parameter name="bounds">-10,36,-5,43</Parameter>
+  <Parameter name="center">-8.4,40,13</Parameter>
+  <Parameter name="format">png24</Parameter>
+  <Parameter name="minzoom">1</Parameter>
+  <Parameter name="maxzoom">15</Parameter>
+  <Parameter name="scale">1.5</Parameter>
+  <Parameter name="metatile">2</Parameter>
+  <Parameter name="id"><![CDATA[rev_002_100k]]></Parameter>
+  <Parameter name="_updated">1529501893000</Parameter>
+  <Parameter name="name"><![CDATA[rev_002_100k]]></Parameter>
+  <Parameter name="tilejson"><![CDATA[2.0.0]]></Parameter>
+  <Parameter name="scheme"><![CDATA[xyz]]></Parameter>
+</Parameters>
+
+<FontSet name="fontset-0">
+  <Font face-name="Open Sans Semibold"/>
+  <Font face-name="DejaVu Sans Book"/>
+  <Font face-name="unifont Medium"/>
+</FontSet>
+<FontSet name="fontset-1">
+  <Font face-name="Open Sans Bold Italic"/>
+  <Font face-name="DejaVu Sans Bold Oblique"/>
+  <Font face-name="unifont Medium"/>
+</FontSet>
+<FontSet name="fontset-2">
+  <Font face-name="Open Sans Bold"/>
+  <Font face-name="DejaVu Sans Bold"/>
+  <Font face-name="unifont Medium"/>
+</FontSet>
+<FontSet name="fontset-3">
+  <Font face-name="Open Sans Semibold Italic"/>
+  <Font face-name="DejaVu Sans Oblique"/>
+  <Font face-name="unifont Medium"/>
+</FontSet>
+<FontSet name="fontset-4">
+  <Font face-name="Open Sans Italic"/>
+  <Font face-name="DejaVu Sans Oblique"/>
+  <Font face-name="unifont Medium"/>
+</FontSet>
+<Style name="countries_high" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>500000000</MaxScaleDenominator>
+    <LineSymbolizer stroke="#f8e9b2" stroke-width="0.5" stroke-linejoin="round" />
+    <PolygonSymbolizer fill="#f8e9b2" />
+  </Rule>
+</Style>
+<Layer name="countries_high"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>countries_high</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+	<Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
+	<Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="table"><![CDATA[(select gid,geom_country_polygon from country.country) as country_high]]></Parameter>
+       <Parameter name="key_field"><![CDATA[gid]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[geom_country_polygon]]></Parameter>
+       <Parameter name="extent_cache"><![CDATA[custom]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,90]]></Parameter>
+       <Parameter name="dbname"><![CDATA[ngmaps]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[osm]]></Parameter>
+       <Parameter name="password"><![CDATA[test]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="area_glacier_high" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <PolygonSymbolizer fill="#deedf6" />
+  </Rule>
+</Style>
+<Layer name="area_glacier_high"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>area_glacier_high</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+	<Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
+	<Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="table"><![CDATA[(SELECT id,  geom, type FROM area_glacier_high
+WHERE z(!scale_denominator!) > 0 ORDER BY area DESC ) AS  area_glacier_high]]></Parameter>
+       <Parameter name="key_field"><![CDATA[id]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
+       <Parameter name="extent_cache"><![CDATA[custom]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,90]]></Parameter>
+       <Parameter name="dbname"><![CDATA[ngmaps]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[osm]]></Parameter>
+       <Parameter name="password"><![CDATA[test]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="area_farmland" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <MinScaleDenominator>100</MinScaleDenominator>
+    <PolygonSymbolizer fill="#fbc394" gamma="2" />
+  </Rule>
+</Style>
+<Layer name="area_farmland"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>area_farmland</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+	<Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
+	<Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="table"><![CDATA[(SELECT id, geom, type FROM area_farmland WHERE z(!scale_denominator!) > 0) AS area_farmland]]></Parameter>
+       <Parameter name="key_field"><![CDATA[id]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
+       <Parameter name="extent_cache"><![CDATA[custom]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,90]]></Parameter>
+       <Parameter name="dbname"><![CDATA[ngmaps]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[osm]]></Parameter>
+       <Parameter name="password"><![CDATA[test]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="area_industrial" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <PolygonSymbolizer fill="#9e9e9e" />
+  </Rule>
+</Style>
+<Layer name="area_industrial"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>area_industrial</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+	<Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
+	<Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="table"><![CDATA[(SELECT id, geom, type FROM area_city_industrial WHERE z(!scale_denominator!) > 0) AS area_city_industrial]]></Parameter>
+       <Parameter name="key_field"><![CDATA[id]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
+       <Parameter name="extent_cache"><![CDATA[custom]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,90]]></Parameter>
+       <Parameter name="dbname"><![CDATA[ngmaps]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[osm]]></Parameter>
+       <Parameter name="password"><![CDATA[test]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="area_construction" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <MinScaleDenominator>100</MinScaleDenominator>
+    <PolygonSymbolizer fill="#9e9e9e" />
+    <LineSymbolizer stroke="#9e9e9e" />
+  </Rule>
+</Style>
+<Layer name="area_construction"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>area_construction</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+	<Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
+	<Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="table"><![CDATA[(SELECT id, geom, type FROM area_construction WHERE z(!scale_denominator!) > 0) AS area_construction]]></Parameter>
+       <Parameter name="key_field"><![CDATA[id]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
+       <Parameter name="extent_cache"><![CDATA[custom]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,90]]></Parameter>
+       <Parameter name="dbname"><![CDATA[ngmaps]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[osm]]></Parameter>
+       <Parameter name="password"><![CDATA[test]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="area_living" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <PolygonSymbolizer fill="#aeaeae" />
+  </Rule>
+</Style>
+<Layer name="area_living"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>area_living</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+	<Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
+	<Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="table"><![CDATA[(SELECT id, geom, type FROM area_city_living WHERE z(!scale_denominator!) > 0) AS area_city_living]]></Parameter>
+       <Parameter name="key_field"><![CDATA[id]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
+       <Parameter name="extent_cache"><![CDATA[custom]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,90]]></Parameter>
+       <Parameter name="dbname"><![CDATA[ngmaps]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[osm]]></Parameter>
+       <Parameter name="password"><![CDATA[test]]></Parameter>
+       <Parameter name="id"><![CDATA[area_living]]></Parameter>
+       <Parameter name="project"><![CDATA[rev_002_10k]]></Parameter>
+       <Parameter name="srs"><![CDATA[+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="area_forest" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <MinScaleDenominator>100</MinScaleDenominator>
+    <PolygonSymbolizer fill="#598f53" gamma="2" />
+  </Rule>
+</Style>
+<Layer name="area_forest"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>area_forest</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+	<Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
+	<Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="table"><![CDATA[(SELECT id, geom, type FROM area_forest WHERE z(!scale_denominator!) > 0) AS area_forest]]></Parameter>
+       <Parameter name="key_field"><![CDATA[id]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
+       <Parameter name="extent_cache"><![CDATA[custom]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,90]]></Parameter>
+       <Parameter name="dbname"><![CDATA[ngmaps]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[osm]]></Parameter>
+       <Parameter name="password"><![CDATA[test]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="area_rocks" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <MinScaleDenominator>100</MinScaleDenominator>
+    <PolygonPatternSymbolizer file="/ssd/TileMill/icons/rev002/pattern_rocks.png" gamma="1" simplify-algorithm="visvalingam-whyatt" />
+  </Rule>
+</Style>
+<Layer name="area_rocks"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>area_rocks</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+	<Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
+	<Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="table"><![CDATA[(SELECT id, geom, type FROM area_rocks WHERE z(!scale_denominator!) > 0) AS area_rocks]]></Parameter>
+       <Parameter name="key_field"><![CDATA[id]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
+       <Parameter name="extent_cache"><![CDATA[custom]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,90]]></Parameter>
+       <Parameter name="dbname"><![CDATA[ngmaps]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[osm]]></Parameter>
+       <Parameter name="password"><![CDATA[test]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="area_beach" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <MinScaleDenominator>100</MinScaleDenominator>
+    <PolygonPatternSymbolizer file="/ssd/TileMill/icons/rev002/sandpattern.png" gamma="1" simplify-algorithm="visvalingam-whyatt" />
+  </Rule>
+</Style>
+<Layer name="area_beach"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>area_beach</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+	<Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
+	<Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="table"><![CDATA[(SELECT id, geom, type FROM area_beach WHERE z(!scale_denominator!) > 0) AS area_beach]]></Parameter>
+       <Parameter name="key_field"><![CDATA[id]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
+       <Parameter name="extent_cache"><![CDATA[custom]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,90]]></Parameter>
+       <Parameter name="dbname"><![CDATA[ngmaps]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[osm]]></Parameter>
+       <Parameter name="password"><![CDATA[test]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="area_shopping" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <PolygonSymbolizer fill="#aeaeae" />
+  </Rule>
+</Style>
+<Layer name="area_shopping"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>area_shopping</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+	<Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
+	<Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="table"><![CDATA[(SELECT id, geom, type FROM area_city_shopping WHERE z(!scale_denominator!) > 0) AS area_city_shopping]]></Parameter>
+       <Parameter name="key_field"><![CDATA[id]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
+       <Parameter name="extent_cache"><![CDATA[custom]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,90]]></Parameter>
+       <Parameter name="dbname"><![CDATA[ngmaps]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[osm]]></Parameter>
+       <Parameter name="password"><![CDATA[test]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="area_education" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <PolygonSymbolizer fill="#aeaeae" />
+  </Rule>
+</Style>
+<Layer name="area_education"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>area_education</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+	<Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
+	<Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="table"><![CDATA[(SELECT id, geom, type FROM area_city_education WHERE z(!scale_denominator!) > 0) AS area_city_education]]></Parameter>
+       <Parameter name="key_field"><![CDATA[id]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
+       <Parameter name="extent_cache"><![CDATA[custom]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,90]]></Parameter>
+       <Parameter name="dbname"><![CDATA[ngmaps]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[osm]]></Parameter>
+       <Parameter name="password"><![CDATA[test]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="area_parking" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <PolygonSymbolizer fill="#a5b2cc" />
+  </Rule>
+</Style>
+<Layer name="area_parking"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>area_parking</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+	<Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
+	<Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="table"><![CDATA[(SELECT id, geom, type FROM area_city_parking WHERE z(!scale_denominator!) > 0) AS area_city_parking]]></Parameter>
+       <Parameter name="key_field"><![CDATA[id]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
+       <Parameter name="extent_cache"><![CDATA[custom]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,90]]></Parameter>
+       <Parameter name="dbname"><![CDATA[ngmaps]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[osm]]></Parameter>
+       <Parameter name="password"><![CDATA[test]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="area_airport" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <PolygonSymbolizer fill="#ceb4b4" />
+  </Rule>
+</Style>
+<Layer name="area_airport"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>area_airport</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+	<Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
+	<Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="table"><![CDATA[(SELECT id, geom, type FROM area_airport WHERE z(!scale_denominator!) > 0) AS area_airport]]></Parameter>
+       <Parameter name="key_field"><![CDATA[id]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
+       <Parameter name="extent_cache"><![CDATA[custom]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,90]]></Parameter>
+       <Parameter name="dbname"><![CDATA[ngmaps]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[osm]]></Parameter>
+       <Parameter name="password"><![CDATA[test]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="area_tourism" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <MinScaleDenominator>100</MinScaleDenominator>
+    <PolygonSymbolizer fill="#81b37c" />
+    <LineSymbolizer stroke="#81b37c" />
+  </Rule>
+</Style>
+<Layer name="area_tourism"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>area_tourism</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+	<Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
+	<Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="table"><![CDATA[(SELECT id, geom, type FROM area_tourism WHERE z(!scale_denominator!) > 0) AS area_tourism]]></Parameter>
+       <Parameter name="key_field"><![CDATA[id]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
+       <Parameter name="extent_cache"><![CDATA[custom]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,90]]></Parameter>
+       <Parameter name="dbname"><![CDATA[ngmaps]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[osm]]></Parameter>
+       <Parameter name="password"><![CDATA[test]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="area_harbour" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <PolygonSymbolizer fill="#9e9e9e" />
+  </Rule>
+</Style>
+<Layer name="area_harbour"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>area_harbour</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+	<Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
+	<Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="table"><![CDATA[(SELECT id,  geom, type FROM area_city_harbour WHERE z(!scale_denominator!) > 0) AS area_city_harbour]]></Parameter>
+       <Parameter name="key_field"><![CDATA[id]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
+       <Parameter name="extent_cache"><![CDATA[custom]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,90]]></Parameter>
+       <Parameter name="dbname"><![CDATA[ngmaps]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[osm]]></Parameter>
+       <Parameter name="password"><![CDATA[test]]></Parameter>
+       <Parameter name="id"><![CDATA[area_harbour]]></Parameter>
+       <Parameter name="project"><![CDATA[rev_002_10k]]></Parameter>
+       <Parameter name="srs"><![CDATA[+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="area_greenfield" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <MinScaleDenominator>100</MinScaleDenominator>
+    <PolygonSymbolizer fill="#91bc8c" smooth="0.1" />
+    <LineSymbolizer stroke="#91bc8c" />
+  </Rule>
+</Style>
+<Layer name="area_greenfield"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>area_greenfield</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+	<Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
+	<Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="table"><![CDATA[(SELECT id, geom, name FROM area_greenfield WHERE z(!scale_denominator!) > 0) AS area_greenfields]]></Parameter>
+       <Parameter name="key_field"><![CDATA[id]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
+       <Parameter name="extent_cache"><![CDATA[custom]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,90]]></Parameter>
+       <Parameter name="dbname"><![CDATA[ngmaps]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[osm]]></Parameter>
+       <Parameter name="password"><![CDATA[test]]></Parameter>
+       <Parameter name="id"><![CDATA[area_greenfield]]></Parameter>
+       <Parameter name="project"><![CDATA[rev_002_10k]]></Parameter>
+       <Parameter name="srs"><![CDATA[+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="area_cemetery" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <MinScaleDenominator>100</MinScaleDenominator>
+    <PolygonSymbolizer fill="#91bc8c" smooth="0.1" />
+    <LineSymbolizer stroke="#91bc8c" />
+  </Rule>
+</Style>
+<Layer name="area_cemetery"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>area_cemetery</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+	<Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
+	<Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="table"><![CDATA[(SELECT id, geom, type FROM area_cemetery WHERE z(!scale_denominator!) > 0) AS area_cemetery]]></Parameter>
+       <Parameter name="key_field"><![CDATA[id]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
+       <Parameter name="extent_cache"><![CDATA[custom]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,90]]></Parameter>
+       <Parameter name="dbname"><![CDATA[ngmaps]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[osm]]></Parameter>
+       <Parameter name="password"><![CDATA[test]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="line_contour" filter-mode="first">
+  <Rule>
+    <LineSymbolizer stroke-width="0.3" stroke="#d28d60" smooth="1" />
+  </Rule>
+</Style>
+<Layer name="line_contour"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>line_contour</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+	<Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
+	<Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="table"><![CDATA[(SELECT 
+round(ele* 3.2808399) AS ele, 
+wkb_geometry, fid,
+CASE 
+WHEN (ele % 100::numeric) = 0::numeric THEN 100
+WHEN (ele % 50::numeric) = 0::numeric THEN 50
+ELSE 10 END AS group
+ from contour.world_contour_lines
+WHERE ele != 0
+AND length_ngmaps(wkb_geometry) > 500
+ AND 
+   (((ele % 50::numeric) = 0::numeric ) or ((ele % 100::numeric) = 0::numeric ) or ((ele % 200::numeric) = 0::numeric))) AS contour]]></Parameter>
+       <Parameter name="key_field"><![CDATA[fid]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[wkb_geometry]]></Parameter>
+       <Parameter name="extent_cache"><![CDATA[custom]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,90]]></Parameter>
+       <Parameter name="dbname"><![CDATA[contour]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[osm]]></Parameter>
+       <Parameter name="password"><![CDATA[test]]></Parameter>
+       <Parameter name="id"><![CDATA[line_contour]]></Parameter>
+       <Parameter name="project"><![CDATA[rev_001_25k_contour]]></Parameter>
+       <Parameter name="srs"><![CDATA[+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="area_water_high" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'riverbank')</Filter>
+    <LineSymbolizer stroke="#a1d2f3" />
+    <PolygonSymbolizer fill="#a1d2f3" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'salt_pond')</Filter>
+    <LineSymbolizer stroke="#a1d2f3" />
+    <PolygonSymbolizer fill="#e7e1ef" fill-opacity="0.3" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <PolygonSymbolizer fill="#a1d2f3" />
+    <LineSymbolizer stroke="#a1d2f3" />
+  </Rule>
+</Style>
+<Layer name="area_water_high"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>area_water_high</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+	<Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
+	<Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="table"><![CDATA[(SELECT id, geom, type FROM area_water WHERE type NOT IN ('marina') AND z(!scale_denominator!) > 0) AS area_water_high]]></Parameter>
+       <Parameter name="key_field"><![CDATA[id]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
+       <Parameter name="extent_cache"><![CDATA[custom]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,90]]></Parameter>
+       <Parameter name="dbname"><![CDATA[ngmaps]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[osm]]></Parameter>
+       <Parameter name="password"><![CDATA[test]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="area_reef" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <PolygonPatternSymbolizer file="/ssd/TileMill/icons/rev002/pattern_reef.png" />
+  </Rule>
+</Style>
+<Layer name="area_reef"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>area_reef</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+	<Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
+	<Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="table"><![CDATA[(SELECT * FROM area_reef WHERE z(!scale_denominator!) > 0) AS reef]]></Parameter>
+       <Parameter name="key_field"><![CDATA[id]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
+       <Parameter name="extent_cache"><![CDATA[custom]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,90]]></Parameter>
+       <Parameter name="dbname"><![CDATA[ngmaps]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[osm]]></Parameter>
+       <Parameter name="password"><![CDATA[test]]></Parameter>
+       <Parameter name="id"><![CDATA[area_reef]]></Parameter>
+       <Parameter name="project"><![CDATA[rev_002_10k]]></Parameter>
+       <Parameter name="srs"><![CDATA[+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="area_railway" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <PolygonSymbolizer fill="#a0a0a0" />
+  </Rule>
+</Style>
+<Layer name="area_railway"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>area_railway</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+	<Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
+	<Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="table"><![CDATA[(SELECT id, geom, type FROM area_city_railway WHERE z(!scale_denominator!) > 0) AS area_city_railway]]></Parameter>
+       <Parameter name="key_field"><![CDATA[id]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
+       <Parameter name="extent_cache"><![CDATA[custom]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,90]]></Parameter>
+       <Parameter name="dbname"><![CDATA[ngmaps]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[osm]]></Parameter>
+       <Parameter name="password"><![CDATA[test]]></Parameter>
+       <Parameter name="id"><![CDATA[area_railway]]></Parameter>
+       <Parameter name="project"><![CDATA[rev_002_10k]]></Parameter>
+       <Parameter name="srs"><![CDATA[+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="area_firedepartment" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <PolygonSymbolizer fill="#aeaeae" />
+  </Rule>
+</Style>
+<Layer name="area_firedepartment"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>area_firedepartment</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+	<Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
+	<Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="table"><![CDATA[(SELECT id, geom, type
+FROM area_emergency_firedepartment WHERE z(!scale_denominator!) > 0) AS area_emergency_firedepartment]]></Parameter>
+       <Parameter name="key_field"><![CDATA[id]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
+       <Parameter name="extent_cache"><![CDATA[custom]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,90]]></Parameter>
+       <Parameter name="dbname"><![CDATA[ngmaps]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[osm]]></Parameter>
+       <Parameter name="password"><![CDATA[test]]></Parameter>
+       <Parameter name="id"><![CDATA[area_firedepartment]]></Parameter>
+       <Parameter name="project"><![CDATA[rev_002_10k]]></Parameter>
+       <Parameter name="srs"><![CDATA[+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="area_hospital" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <PolygonSymbolizer fill="#aeaeae" />
+  </Rule>
+</Style>
+<Layer name="area_hospital"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>area_hospital</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+	<Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
+	<Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="table"><![CDATA[(SELECT id, geom, type
+FROM area_emergency_hospital WHERE z(!scale_denominator!) > 0) AS area_emergency_hospital]]></Parameter>
+       <Parameter name="key_field"><![CDATA[id]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
+       <Parameter name="extent_cache"><![CDATA[custom]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,90]]></Parameter>
+       <Parameter name="dbname"><![CDATA[ngmaps]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[osm]]></Parameter>
+       <Parameter name="password"><![CDATA[test]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="area_police" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <PolygonSymbolizer fill="#aeaeae" />
+  </Rule>
+</Style>
+<Layer name="area_police"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>area_police</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+	<Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
+	<Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="table"><![CDATA[(SELECT id, geom, type
+FROM area_emergency_policestation WHERE z(!scale_denominator!) > 0) AS area_emergency_policestation]]></Parameter>
+       <Parameter name="key_field"><![CDATA[id]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
+       <Parameter name="extent_cache"><![CDATA[custom]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,90]]></Parameter>
+       <Parameter name="dbname"><![CDATA[ngmaps]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[osm]]></Parameter>
+       <Parameter name="password"><![CDATA[test]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="area_buildings" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <PolygonSymbolizer fill="#797979" />
+    <LineSymbolizer stroke="#797979" stroke-width="0.1" />
+  </Rule>
+</Style>
+<Layer name="area_buildings"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>area_buildings</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+	<Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
+	<Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="table"><![CDATA[(SELECT id, geom, type
+FROM area_building WHERE z(!scale_denominator!) > 0) AS area_buildings]]></Parameter>
+       <Parameter name="key_field"><![CDATA[id]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
+       <Parameter name="extent_cache"><![CDATA[custom]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,90]]></Parameter>
+       <Parameter name="dbname"><![CDATA[ngmaps]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[osm]]></Parameter>
+       <Parameter name="password"><![CDATA[test]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="area_military" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <MinScaleDenominator>100</MinScaleDenominator>
+    <PolygonSymbolizer fill="#996d34" fill-opacity="0.1" />
+    <PolygonPatternSymbolizer file="/ssd/TileMill/icons/rev002/pattern_military.png" />
+    <LineSymbolizer stroke="#996d34" stroke-dasharray="2, 1" />
+  </Rule>
+</Style>
+<Layer name="area_military"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>area_military</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+	<Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
+	<Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="table"><![CDATA[(SELECT id, geom, type,
+area_ngmaps(geom) AS area
+FROM area_military WHERE area > 1000000 AND z(!scale_denominator!) > 0) AS area_military]]></Parameter>
+       <Parameter name="key_field"><![CDATA[id]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
+       <Parameter name="extent_cache"><![CDATA[custom]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,90]]></Parameter>
+       <Parameter name="dbname"><![CDATA[ngmaps]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[osm]]></Parameter>
+       <Parameter name="password"><![CDATA[test]]></Parameter>
+       <Parameter name="id"><![CDATA[area_military]]></Parameter>
+       <Parameter name="project"><![CDATA[rev_002_100k]]></Parameter>
+       <Parameter name="srs"><![CDATA[+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="line_waterway" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'stream')</Filter>
+    <LineSymbolizer stroke="#a1d2f3" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'drain')</Filter>
+    <LineSymbolizer stroke="#a1d2f3" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'canal')</Filter>
+    <LineSymbolizer stroke="#a1d2f3" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'river')</Filter>
+    <LineSymbolizer stroke="#a1d2f3" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
+  </Rule>
+</Style>
+<Layer name="line_waterway"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>line_waterway</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+	<Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
+	<Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="table"><![CDATA[(SELECT id, geom, type
+FROM line_waterway WHERE type NOT IN ('stream','drain') AND  z(!scale_denominator!) > 0) AS line_waterway]]></Parameter>
+       <Parameter name="key_field"><![CDATA[id]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
+       <Parameter name="extent_cache"><![CDATA[custom]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,90]]></Parameter>
+       <Parameter name="dbname"><![CDATA[ngmaps]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[osm]]></Parameter>
+       <Parameter name="password"><![CDATA[test]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="area_wateroverlay_high" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'undefine')</Filter>
+    <PolygonSymbolizer fill="#47a7e7" fill-opacity="0.1" />
+    <PolygonPatternSymbolizer file="/ssd/TileMill/icons/rev002/pattern_wetlands.png" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'mangrove')</Filter>
+    <PolygonSymbolizer fill="#238b45" fill-opacity="0.1" />
+    <PolygonPatternSymbolizer file="/ssd/TileMill/icons/rev002/mangrove.png" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'marsh')</Filter>
+    <PolygonSymbolizer fill="#598f53" fill-opacity="0.1" />
+    <PolygonPatternSymbolizer file="/ssd/TileMill/icons/rev002/sumpf.png" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'wetland')</Filter>
+    <PolygonPatternSymbolizer file="/ssd/TileMill/icons/rev002/pattern_wetlands.png" gamma="1" />
+    <PolygonSymbolizer fill="#47a7e7" fill-opacity="0.1" />
+  </Rule>
+</Style>
+<Layer name="area_wateroverlay_high"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>area_wateroverlay_high</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+	<Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
+	<Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="table"><![CDATA[(SELECT id, geom, type,
+(area/(!pixel_width!+1*!pixel_height!+1)) AS way_pixels
+FROM area_wateroverlay WHERE z(!scale_denominator!) > 0) AS area_water_overlay]]></Parameter>
+       <Parameter name="key_field"><![CDATA[id]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
+       <Parameter name="extent_cache"><![CDATA[custom]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,90]]></Parameter>
+       <Parameter name="dbname"><![CDATA[ngmaps]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[osm]]></Parameter>
+       <Parameter name="password"><![CDATA[test]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="area_naturalreserve" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <MinScaleDenominator>100</MinScaleDenominator>
+    <PolygonSymbolizer fill="#51a74a" fill-opacity="0.1" />
+    <LineSymbolizer stroke="#2f602b" stroke-dasharray="2, 1" />
+  </Rule>
+</Style>
+<Layer name="area_naturalreserve"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>area_naturalreserve</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+	<Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
+	<Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="table"><![CDATA[(SELECT * FROM area_naturalreserve WHERE z(!scale_denominator!) > 0) AS naturalreserve]]></Parameter>
+       <Parameter name="key_field"><![CDATA[id]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
+       <Parameter name="extent_cache"><![CDATA[custom]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,90]]></Parameter>
+       <Parameter name="dbname"><![CDATA[ngmaps]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[osm]]></Parameter>
+       <Parameter name="password"><![CDATA[test]]></Parameter>
+       <Parameter name="id"><![CDATA[area_naturalreserve]]></Parameter>
+       <Parameter name="project"><![CDATA[rev_002_10k]]></Parameter>
+       <Parameter name="srs"><![CDATA[+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="line_cliff" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <LinePatternSymbolizer file="/ssd/TileMill/icons/rev002/cliff.png" />
+  </Rule>
+</Style>
+<Layer name="line_cliff"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>line_cliff</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+	<Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
+	<Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="table"><![CDATA[(SELECT id, geom, type 
+FROM line_cliff WHERE z(!scale_denominator!) > 0) AS line_cliff]]></Parameter>
+       <Parameter name="key_field"><![CDATA[id]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
+       <Parameter name="extent_cache"><![CDATA[custom]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,90]]></Parameter>
+       <Parameter name="dbname"><![CDATA[ngmaps]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[osm]]></Parameter>
+       <Parameter name="password"><![CDATA[test]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="line_roads_big_tunnel" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'unclassified')</Filter>
+    <LineSymbolizer stroke-width="1" stroke="#444444" stroke-dasharray="3, 4" stroke-opacity="0.5" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'tertiary_link')</Filter>
+    <LineSymbolizer stroke-width="1.25" stroke="#ff9600" stroke-dasharray="3, 4" stroke-opacity="0.5" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'tertiary')</Filter>
+    <LineSymbolizer stroke-width="1.25" stroke="#ff9600" stroke-dasharray="3, 4" stroke-opacity="0.5" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'secondary_link')</Filter>
+    <LineSymbolizer stroke="#e66d33" stroke-width="2" stroke-linejoin="round" stroke-dasharray="4, 5" stroke-opacity="0.5" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'secondary')</Filter>
+    <LineSymbolizer stroke="#e66d33" stroke-width="2" stroke-linejoin="round" stroke-dasharray="4, 5" stroke-opacity="0.5" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'trunk_link')</Filter>
+    <LineSymbolizer stroke-width="3.2" stroke="#bf8000" stroke-linejoin="round" stroke-dasharray="4, 5" stroke-opacity="0.5" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'trunk')</Filter>
+    <LineSymbolizer stroke-width="3.2" stroke="#bf8000" stroke-linejoin="round" stroke-dasharray="4, 5" stroke-opacity="0.5" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'primary_link')</Filter>
+    <LineSymbolizer stroke-width="3.2" stroke="#bf8000" stroke-linejoin="round" stroke-dasharray="4, 5" stroke-opacity="0.5" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'primary')</Filter>
+    <LineSymbolizer stroke-width="3.2" stroke="#bf8000" stroke-linejoin="round" stroke-dasharray="4, 5" stroke-opacity="0.5" />
+  </Rule>
+</Style>
+<Style name="line_roads_big_tunnel-inline" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'motorway_link')</Filter>
+    <LineSymbolizer stroke="#f9d254" stroke-dasharray="7, 3" stroke-width="2" stroke-opacity="0.1" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'motorway')</Filter>
+    <LineSymbolizer stroke="#f9d254" stroke-dasharray="7, 3" stroke-width="2" stroke-opacity="0.1" />
+  </Rule>
+</Style>
+<Style name="line_roads_big_tunnel-outline" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'motorway_link')</Filter>
+    <LineSymbolizer stroke="#e65c5c" stroke-width="3" stroke-dasharray="7, 3" stroke-opacity="0.5" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'motorway')</Filter>
+    <LineSymbolizer stroke="#e65c5c" stroke-width="3" stroke-dasharray="7, 3" stroke-opacity="0.5" />
+  </Rule>
+</Style>
+<Layer name="line_roads_big_tunnel"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>line_roads_big_tunnel-outline</StyleName>
+    <StyleName>line_roads_big_tunnel-inline</StyleName>
+    <StyleName>line_roads_big_tunnel</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+	<Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
+	<Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="table"><![CDATA[(SELECT *
+FROM line_roads_big
+WHERE (tunnel='yes' OR tunnel  IS NOT NULL) AND z(!scale_denominator!) > 0) AS big_roads_tunnel]]></Parameter>
+       <Parameter name="key_field"><![CDATA[id]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
+       <Parameter name="extent_cache"><![CDATA[custom]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,90]]></Parameter>
+       <Parameter name="dbname"><![CDATA[ngmaps]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[osm]]></Parameter>
+       <Parameter name="password"><![CDATA[test]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="line_rail_tunnel-inline" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'local')</Filter>
+    <LineSymbolizer stroke-opacity="1" stroke-width="0.5" stroke="#888888" stroke-dasharray="3, 3" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'long_distance')</Filter>
+    <LineSymbolizer stroke="#f4f3f3" stroke-width="1" stroke-opacity="0.5" />
+  </Rule>
+</Style>
+<Style name="line_rail_tunnel-outline" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'local')</Filter>
+    <LineSymbolizer stroke-opacity="1" stroke-width="1" stroke="#f4f3f3" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'long_distance')</Filter>
+    <LineSymbolizer stroke="#888888" stroke-dasharray="2, 2" stroke-width="1.5" />
+  </Rule>
+</Style>
+<Layer name="line_rail_tunnel"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>line_rail_tunnel-outline</StyleName>
+    <StyleName>line_rail_tunnel-inline</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+	<Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
+	<Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="table"><![CDATA[(SELECT * 
+FROM line_rail WHERE tunnel = 'yes' AND  z(!scale_denominator!) > 0 AND type = 'long_distance') AS line_rail]]></Parameter>
+       <Parameter name="key_field"><![CDATA[id]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
+       <Parameter name="extent_cache"><![CDATA[custom]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,90]]></Parameter>
+       <Parameter name="dbname"><![CDATA[ngmaps]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[osm]]></Parameter>
+       <Parameter name="password"><![CDATA[test]]></Parameter>
+       <Parameter name="id"><![CDATA[line_rail_tunnel]]></Parameter>
+       <Parameter name="project"><![CDATA[rev_002_100k]]></Parameter>
+       <Parameter name="srs"><![CDATA[+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="line_ferry" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <LineSymbolizer stroke-width="2" stroke="#74bced" stroke-dasharray="2, 2, 1, 1" />
+  </Rule>
+</Style>
+<Layer name="line_ferry"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>line_ferry</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+	<Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
+	<Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="table"><![CDATA[(SELECT id, geom, type
+FROM line_ferry WHERE z(!scale_denominator!) > 0) AS line_ferry]]></Parameter>
+       <Parameter name="key_field"><![CDATA[id]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
+       <Parameter name="extent_cache"><![CDATA[custom]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,90]]></Parameter>
+       <Parameter name="dbname"><![CDATA[ngmaps]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[osm]]></Parameter>
+       <Parameter name="password"><![CDATA[test]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="line_roads_big_B-line_1" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'tertiary_link')</Filter>
+    <LineSymbolizer stroke-width="1.25" stroke="#ff9600" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'tertiary')</Filter>
+    <LineSymbolizer stroke-width="1.25" stroke="#ff9600" />
+  </Rule>
+</Style>
+<Style name="line_roads_big_B-inline" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'unclassified')</Filter>
+    <LineSymbolizer stroke-width="0.5" stroke="#f4f3f3" />
+  </Rule>
+</Style>
+<Style name="line_roads_big_B-outline" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'unclassified')</Filter>
+    <LineSymbolizer stroke-width="1.25" stroke="#444444" />
+  </Rule>
+</Style>
+<Layer name="line_roads_big_B"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>line_roads_big_B-outline</StyleName>
+    <StyleName>line_roads_big_B-inline</StyleName>
+    <StyleName>line_roads_big_B-line_1</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+	<Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
+	<Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="table"><![CDATA[(SELECT *
+FROM line_roads_big
+WHERE (tunnel != 'yes' OR tunnel IS NULL) AND (bridge !='yes' OR bridge IS NULL) AND (type IN ('tertiary','tertiary_link','unclassified')) AND z(!scale_denominator!) > 0 ORDER BY prio DESC) AS line_roads_B]]></Parameter>
+       <Parameter name="key_field"><![CDATA[id]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
+       <Parameter name="extent_cache"><![CDATA[custom]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,90]]></Parameter>
+       <Parameter name="dbname"><![CDATA[ngmaps]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[osm]]></Parameter>
+       <Parameter name="password"><![CDATA[test]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="line_roads_big_A-inline" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'motorway_link')</Filter>
+    <LineSymbolizer stroke-width="1.5" stroke="#f9d254" stroke-linejoin="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'motorway')</Filter>
+    <LineSymbolizer stroke-width="1.5" stroke="#f9d254" stroke-linejoin="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'primary_link')</Filter>
+    <LineSymbolizer stroke-width="2.2" stroke="#ffc859" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'trunk')</Filter>
+    <LineSymbolizer stroke-width="2.2" stroke="#ffc859" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'primary')</Filter>
+    <LineSymbolizer stroke-width="2.2" stroke="#ffc859" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'trunk_link')</Filter>
+    <LineSymbolizer stroke-width="2.2" stroke="#ffc859" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'secondary_link')</Filter>
+    <LineSymbolizer stroke="#cb951a" stroke-width="1.7" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'secondary')</Filter>
+    <LineSymbolizer stroke="#cb951a" stroke-width="1.7" />
+  </Rule>
+</Style>
+<Style name="line_roads_big_A-outline" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'motorway')</Filter>
+    <LineSymbolizer stroke-width="3.5" stroke="#e65c5c" stroke-linejoin="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'motorway_link')</Filter>
+    <LineSymbolizer stroke-width="3.5" stroke="#e65c5c" stroke-linejoin="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'trunk_link')</Filter>
+    <LineSymbolizer stroke-width="3.2" stroke="#bf8000" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'trunk')</Filter>
+    <LineSymbolizer stroke-width="3.2" stroke="#bf8000" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'primary_link')</Filter>
+    <LineSymbolizer stroke-width="3.2" stroke="#bf8000" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'primary')</Filter>
+    <LineSymbolizer stroke-width="3.2" stroke="#bf8000" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'secondary')</Filter>
+    <LineSymbolizer stroke="#e66d33" stroke-width="2" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'secondary_link')</Filter>
+    <LineSymbolizer stroke="#e66d33" stroke-width="2" />
+  </Rule>
+</Style>
+<Layer name="line_roads_big_A"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>line_roads_big_A-outline</StyleName>
+    <StyleName>line_roads_big_A-inline</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+	<Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
+	<Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="table"><![CDATA[(SELECT * 
+FROM line_roads_big
+WHERE (tunnel !='yes' OR tunnel IS  NULL) AND  (bridge !='yes' OR bridge IS  NULL)
+AND (type NOT IN ('tertiary','tertiary_link','unclassified'))  AND z(!scale_denominator!) > 0 ORDER BY prio DESC) AS line_roads_A]]></Parameter>
+       <Parameter name="key_field"><![CDATA[id]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
+       <Parameter name="extent_cache"><![CDATA[custom]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,90]]></Parameter>
+       <Parameter name="dbname"><![CDATA[ngmaps]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[osm]]></Parameter>
+       <Parameter name="password"><![CDATA[test]]></Parameter>
+       <Parameter name="id"><![CDATA[line_roads_big]]></Parameter>
+       <Parameter name="project"><![CDATA[rev_002_10k]]></Parameter>
+       <Parameter name="srs"><![CDATA[+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="line_rail-inline" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'local')</Filter>
+    <LineSymbolizer stroke-width="0.5" stroke="#888888" stroke-dasharray="3, 3" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'long_distance')</Filter>
+    <LineSymbolizer stroke-width="1" stroke="#888888" stroke-dasharray="4, 5" />
+  </Rule>
+</Style>
+<Style name="line_rail-outline" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'local')</Filter>
+    <LineSymbolizer stroke-width="1" stroke="#f4f3f3" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'long_distance')</Filter>
+    <LineSymbolizer stroke-width="1.5" stroke="#f4f3f3" />
+  </Rule>
+</Style>
+<Layer name="line_rail"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>line_rail-outline</StyleName>
+    <StyleName>line_rail-inline</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+	<Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
+	<Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="table"><![CDATA[(SELECT * 
+FROM line_rail WHERE  (bridge = 'yes' OR (bridge IS NULL AND tunnel IS NULL)) AND 
+z(!scale_denominator!) > 0 AND type = 'long_distance') AS line_rail]]></Parameter>
+       <Parameter name="key_field"><![CDATA[id]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
+       <Parameter name="extent_cache"><![CDATA[custom]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,90]]></Parameter>
+       <Parameter name="dbname"><![CDATA[ngmaps]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[osm]]></Parameter>
+       <Parameter name="password"><![CDATA[test]]></Parameter>
+       <Parameter name="id"><![CDATA[line_rail]]></Parameter>
+       <Parameter name="project"><![CDATA[rev_002_100k]]></Parameter>
+       <Parameter name="srs"><![CDATA[+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="line_roads_big_bridge" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'unclassified')</Filter>
+    <LineSymbolizer stroke-width="0.5" stroke="#f4f3f3" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'tertiary')</Filter>
+    <LineSymbolizer stroke-width="1" stroke="#ff9600" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'tertiary_link')</Filter>
+    <LineSymbolizer stroke-width="1" stroke="#ff9600" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'secondary')</Filter>
+    <LineSymbolizer stroke="#cb951a" stroke-width="1" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'secondary_link')</Filter>
+    <LineSymbolizer stroke="#cb951a" stroke-width="1" />
+  </Rule>
+</Style>
+<Style name="line_roads_big_bridge-outline/inline" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'primary_link')</Filter>
+    <LineSymbolizer stroke-width="1.5" stroke="#ffc859" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'trunk')</Filter>
+    <LineSymbolizer stroke-width="1.5" stroke="#ffc859" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'trunk_link')</Filter>
+    <LineSymbolizer stroke-width="1.5" stroke="#ffc859" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'primary')</Filter>
+    <LineSymbolizer stroke-width="1.5" stroke="#ffc859" />
+  </Rule>
+</Style>
+<Style name="line_roads_big_bridge-outline/case" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'primary')</Filter>
+    <LineSymbolizer stroke-width="2.8" stroke="#bf8000" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'trunk_link')</Filter>
+    <LineSymbolizer stroke-width="2.8" stroke="#bf8000" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'primary_link')</Filter>
+    <LineSymbolizer stroke-width="2.8" stroke="#bf8000" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'trunk')</Filter>
+    <LineSymbolizer stroke-width="2.8" stroke="#bf8000" />
+  </Rule>
+</Style>
+<Style name="line_roads_big_bridge-fill" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'motorway_link')</Filter>
+    <LineSymbolizer stroke-width="1" stroke="#f9d254" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'motorway')</Filter>
+    <LineSymbolizer stroke-width="1" stroke="#f9d254" />
+  </Rule>
+</Style>
+<Style name="line_roads_big_bridge-case" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'motorway_link')</Filter>
+    <LineSymbolizer stroke-width="3" stroke="#e65c5c" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'motorway')</Filter>
+    <LineSymbolizer stroke-width="3" stroke="#e65c5c" />
+  </Rule>
+</Style>
+<Style name="line_roads_big_bridge-outline" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'unclassified')</Filter>
+    <LineSymbolizer stroke-width="1.25" stroke="#444444" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'tertiary')</Filter>
+    <LineSymbolizer stroke-width="1.5" stroke="#444444" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'tertiary_link')</Filter>
+    <LineSymbolizer stroke-width="1.5" stroke="#444444" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'secondary_link')</Filter>
+    <LineSymbolizer stroke-width="2.5" stroke="#444444" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'secondary')</Filter>
+    <LineSymbolizer stroke-width="2.5" stroke="#444444" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'trunk')</Filter>
+    <LineSymbolizer stroke-width="3.8" stroke="#444444" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'primary_link')</Filter>
+    <LineSymbolizer stroke-width="3.8" stroke="#444444" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'trunk_link')</Filter>
+    <LineSymbolizer stroke-width="3.8" stroke="#444444" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'primary')</Filter>
+    <LineSymbolizer stroke-width="3.8" stroke="#444444" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'motorway_link')</Filter>
+    <LineSymbolizer stroke-width="4.2" stroke="#444444" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'motorway')</Filter>
+    <LineSymbolizer stroke-width="4.2" stroke="#444444" />
+  </Rule>
+</Style>
+<Layer name="line_roads_big_bridge"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>line_roads_big_bridge-outline</StyleName>
+    <StyleName>line_roads_big_bridge-case</StyleName>
+    <StyleName>line_roads_big_bridge-fill</StyleName>
+    <StyleName>line_roads_big_bridge-outline/case</StyleName>
+    <StyleName>line_roads_big_bridge-outline/inline</StyleName>
+    <StyleName>line_roads_big_bridge</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+	<Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
+	<Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="table"><![CDATA[(SELECT *
+FROM line_roads_big
+WHERE (bridge='yes' OR bridge IS NOT NULL) AND z(!scale_denominator!) > 0) AS big_roads_bridge]]></Parameter>
+       <Parameter name="key_field"><![CDATA[id]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
+       <Parameter name="extent_cache"><![CDATA[custom]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,90]]></Parameter>
+       <Parameter name="dbname"><![CDATA[ngmaps]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[osm]]></Parameter>
+       <Parameter name="password"><![CDATA[test]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="line_airport-runway" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>750000</MaxScaleDenominator>
+    <Filter>([type] = 'runway')</Filter>
+    <LineSymbolizer stroke="#8c8c8c" stroke-width="3.5" />
+  </Rule>
+</Style>
+<Style name="line_airport-taxiway" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>750000</MaxScaleDenominator>
+    <Filter>([type] = 'taxiway')</Filter>
+    <LineSymbolizer stroke="#999999" stroke-width="1.5" />
+  </Rule>
+</Style>
+<Layer name="line_airport"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>line_airport-taxiway</StyleName>
+    <StyleName>line_airport-runway</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+	<Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
+	<Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="table"><![CDATA[(SELECT id, geom, type
+FROM line_airport WHERE z(!scale_denominator!) > 0) AS line_airport]]></Parameter>
+       <Parameter name="key_field"><![CDATA[id]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
+       <Parameter name="extent_cache"><![CDATA[custom]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,90]]></Parameter>
+       <Parameter name="dbname"><![CDATA[ngmaps]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[osm]]></Parameter>
+       <Parameter name="password"><![CDATA[test]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="area_marina" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <LineSymbolizer stroke-width="3" stroke-opacity="0.5" stroke="#6989c0" />
+  </Rule>
+</Style>
+<Layer name="area_marina"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>area_marina</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+	<Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
+	<Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="table"><![CDATA[(SELECT * FROM area_marina WHERE z(!scale_denominator!) > 0) AS marina]]></Parameter>
+       <Parameter name="key_field"><![CDATA[id]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
+       <Parameter name="extent_cache"><![CDATA[custom]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,90]]></Parameter>
+       <Parameter name="dbname"><![CDATA[ngmaps]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[osm]]></Parameter>
+       <Parameter name="password"><![CDATA[test]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="line_aerialway-dash" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'small_lift')</Filter>
+    <LineSymbolizer stroke-width="2" stroke-dasharray="1, 8" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'big_lift')</Filter>
+    <LineSymbolizer stroke-width="3" stroke-dasharray="1, 8" />
+  </Rule>
+</Style>
+<Style name="line_aerialway-inline" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'small_lift')</Filter>
+    <LineSymbolizer stroke-width="0.1" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'big_lift')</Filter>
+    <LineSymbolizer stroke-width="0.5" />
+  </Rule>
+</Style>
+<Style name="line_aerialway" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'small_lift')</Filter>
+    <LineSymbolizer stroke="#686363" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'big_lift')</Filter>
+    <LineSymbolizer stroke="#686363" />
+  </Rule>
+</Style>
+<Layer name="line_aerialway"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>line_aerialway</StyleName>
+    <StyleName>line_aerialway-inline</StyleName>
+    <StyleName>line_aerialway-dash</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+	<Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
+	<Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="table"><![CDATA[(SELECT id, geom, type
+FROM line_aerialway WHERE z(!scale_denominator!) > 0) AS line_aerialway]]></Parameter>
+       <Parameter name="key_field"><![CDATA[id]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
+       <Parameter name="extent_cache"><![CDATA[custom]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,90]]></Parameter>
+       <Parameter name="dbname"><![CDATA[ngmaps]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[osm]]></Parameter>
+       <Parameter name="password"><![CDATA[test]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="line_boundary-line" filter-mode="first">
+  <Rule>
+    <Filter>([type] = '4')</Filter>
+    <LineSymbolizer stroke="#93006c" stroke-width="1" stroke-dasharray="2, 4" />
+  </Rule>
+  <Rule>
+    <Filter>([type] = '3')</Filter>
+    <LineSymbolizer stroke="#93006c" stroke-width="1" stroke-opacity="0.5" />
+  </Rule>
+  <Rule>
+    <Filter>([type] = '2')</Filter>
+    <LineSymbolizer stroke="#93006c" stroke-width="1" />
+  </Rule>
+</Style>
+<Style name="line_boundary-outline" filter-mode="first">
+  <Rule>
+    <Filter>([type] = '4')</Filter>
+    <LineSymbolizer stroke="#b4b4b4" stroke-width="2" />
+  </Rule>
+  <Rule>
+    <Filter>([type] = '3')</Filter>
+    <LineSymbolizer stroke="#b4b4b4" stroke-width="2" stroke-opacity="0.5" />
+  </Rule>
+  <Rule>
+    <Filter>([type] = '2')</Filter>
+    <LineSymbolizer stroke="#b4b4b4" stroke-width="4" />
+  </Rule>
+</Style>
+<Layer name="line_boundary"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>line_boundary-outline</StyleName>
+    <StyleName>line_boundary-line</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+	<Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
+	<Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="table"><![CDATA[(SELECT id, geom, type
+FROM line_boundaries WHERE type IN ('2', '3', '4') and id not in (137031335, 137195577,136931079)
+AND z(!scale_denominator!) > 0 )
+AS line_boundaries]]></Parameter>
+       <Parameter name="key_field"><![CDATA[id]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
+       <Parameter name="extent_cache"><![CDATA[custom]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,90]]></Parameter>
+       <Parameter name="dbname"><![CDATA[ngmaps]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[osm]]></Parameter>
+       <Parameter name="password"><![CDATA[test]]></Parameter>
+       <Parameter name="id"><![CDATA[line_boundary]]></Parameter>
+       <Parameter name="project"><![CDATA[rev_002_10k]]></Parameter>
+       <Parameter name="srs"><![CDATA[+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="point_airport" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <MarkersSymbolizer file="/ssd/TileMill/icons/rev002/Flugzeug.svg" ignore-placement="false" allow-overlap="false" multi-policy="whole" />
+  </Rule>
+</Style>
+<Layer name="point_airport"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>point_airport</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+	<Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
+	<Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="table"><![CDATA[(SELECT * 
+FROM point_airport WHERE z(!scale_denominator!) > 0) AS point_airport]]></Parameter>
+       <Parameter name="key_field"><![CDATA[id]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
+       <Parameter name="extent_cache"><![CDATA[custom]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,90]]></Parameter>
+       <Parameter name="dbname"><![CDATA[ngmaps]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[osm]]></Parameter>
+       <Parameter name="password"><![CDATA[test]]></Parameter>
+       <Parameter name="id"><![CDATA[airport-point]]></Parameter>
+       <Parameter name="project"><![CDATA[25k_neu]]></Parameter>
+       <Parameter name="srs"><![CDATA[+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="label_places-points/town" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <Filter>([type] = 'town')</Filter>
+    <TextSymbolizer size="18" character-spacing="5" line-spacing="6" fontset-name="fontset-0" placement="point" placement-type="simple" dx="4" dy="4" placements="NE, SE, E, N, S, NW, SW, W" fill="#271703" halo-fill="rgba(243, 237, 221, 0.8)" halo-radius="1.3" wrap-width="80" allow-overlap="false" minimum-padding="4" avoid-edges="true"><![CDATA[[name_en]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([type] = 'town')</Filter>
+    <TextSymbolizer size="17" character-spacing="4" line-spacing="5" fontset-name="fontset-0" placement="point" placement-type="simple" dx="4" dy="4" placements="NE, SE, E, N, S, NW, SW, W" fill="#271703" halo-fill="rgba(243, 237, 221, 0.8)" halo-radius="1.3" wrap-width="80" allow-overlap="false" minimum-padding="4" avoid-edges="true"><![CDATA[[name_en]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([type] = 'town')</Filter>
+    <TextSymbolizer size="17" character-spacing="3" line-spacing="4" fontset-name="fontset-0" placement="point" placement-type="simple" dx="4" dy="4" placements="NE, SE, E, N, S, NW, SW, W" fill="#271703" halo-fill="rgba(243, 237, 221, 0.8)" halo-radius="1.3" wrap-width="80" allow-overlap="false" minimum-padding="4" avoid-edges="true"><![CDATA[[name_en]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>25000</MinScaleDenominator>
+    <Filter>([type] = 'town')</Filter>
+    <TextSymbolizer size="17" character-spacing="2" line-spacing="3" fontset-name="fontset-0" placement="point" placement-type="simple" dx="4" dy="4" placements="NE, SE, E, N, S, NW, SW, W" fill="#271703" halo-fill="rgba(243, 237, 221, 0.8)" halo-radius="1.3" wrap-width="80" allow-overlap="false" minimum-padding="4" avoid-edges="true"><![CDATA[[name_en]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <Filter>([type] = 'town')</Filter>
+    <TextSymbolizer size="17" character-spacing="1" line-spacing="2" fontset-name="fontset-0" placement="point" placement-type="simple" dx="4" dy="4" placements="NE, SE, E, N, S, NW, SW, W" fill="#271703" halo-fill="rgba(243, 237, 221, 0.8)" halo-radius="1.3" wrap-width="80" allow-overlap="false" minimum-padding="4" avoid-edges="true"><![CDATA[[name_en]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>200000</MaxScaleDenominator>
+    <MinScaleDenominator>100000</MinScaleDenominator>
+    <Filter>([type] = 'town')</Filter>
+    <TextSymbolizer size="17" line-spacing="1" fontset-name="fontset-0" placement="point" placement-type="simple" dx="4" dy="4" placements="NE, SE, E, N, S, NW, SW, W" fill="#271703" halo-fill="rgba(243, 237, 221, 0.8)" halo-radius="1.3" wrap-width="80" allow-overlap="false" minimum-padding="4" avoid-edges="true"><![CDATA[[name_en]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>400000</MaxScaleDenominator>
+    <MinScaleDenominator>200000</MinScaleDenominator>
+    <Filter>([type] = 'town')</Filter>
+    <TextSymbolizer size="17" fontset-name="fontset-0" placement="point" placement-type="simple" dx="4" dy="4" placements="NE, SE, E, N, S, NW, SW, W" fill="#271703" halo-fill="rgba(243, 237, 221, 0.8)" halo-radius="1.3" wrap-width="80" allow-overlap="false" minimum-padding="4" avoid-edges="true"><![CDATA[[name_en]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>750000</MaxScaleDenominator>
+    <MinScaleDenominator>400000</MinScaleDenominator>
+    <Filter>([type] = 'town')</Filter>
+    <TextSymbolizer size="14" fontset-name="fontset-0" placement="point" placement-type="simple" dx="4" dy="4" placements="NE, SE, E, N, S, NW, SW, W" fill="#271703" halo-fill="rgba(243, 237, 221, 0.8)" halo-radius="1.3" wrap-width="80" allow-overlap="false" minimum-padding="4" avoid-edges="true"><![CDATA[[name_en]]]></TextSymbolizer>
+  </Rule>
+</Style>
+<Style name="label_places-points/city" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <Filter>([type] = 'city') and ([prio] = 21) and ([is_capital] != 'country')</Filter>
+    <TextSymbolizer size="20" character-spacing="6" wrap-width="400" fontset-name="fontset-0" placement="point" placement-type="simple" dx="6" dy="6" placements="NE, SE, E, N, S, NW, SW, W" fill="#271703" halo-fill="rgba(243, 237, 221, 0.8)" halo-radius="2.3" allow-overlap="false" minimum-padding="4" avoid-edges="true"><![CDATA[[name_en]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([type] = 'city') and ([prio] = 21) and ([is_capital] != 'country')</Filter>
+    <TextSymbolizer size="19" character-spacing="6" wrap-width="400" fontset-name="fontset-0" placement="point" placement-type="simple" dx="6" dy="6" placements="NE, SE, E, N, S, NW, SW, W" fill="#271703" halo-fill="rgba(243, 237, 221, 0.8)" halo-radius="2.3" allow-overlap="false" minimum-padding="4" avoid-edges="true"><![CDATA[[name_en]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>25000</MinScaleDenominator>
+    <Filter>([type] = 'city') and ([prio] = 21) and ([is_capital] != 'country')</Filter>
+    <TextSymbolizer size="18" character-spacing="4" wrap-width="300" fontset-name="fontset-0" placement="point" placement-type="simple" dx="6" dy="6" placements="NE, SE, E, N, S, NW, SW, W" fill="#271703" halo-fill="rgba(243, 237, 221, 0.8)" halo-radius="2.3" allow-overlap="false" minimum-padding="4" avoid-edges="true"><![CDATA[[name_en]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <Filter>([type] = 'city') and ([prio] = 21) and ([is_capital] != 'country')</Filter>
+    <TextSymbolizer size="17" character-spacing="2" wrap-width="200" fontset-name="fontset-0" placement="point" placement-type="simple" dx="6" dy="6" placements="NE, SE, E, N, S, NW, SW, W" fill="#271703" halo-fill="rgba(243, 237, 221, 0.8)" halo-radius="2.3" allow-overlap="false" minimum-padding="4" avoid-edges="true"><![CDATA[[name_en]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>200000</MaxScaleDenominator>
+    <MinScaleDenominator>100000</MinScaleDenominator>
+    <Filter>([type] = 'city') and ([prio] = 21) and ([is_capital] != 'country')</Filter>
+    <TextSymbolizer size="16" character-spacing="1" wrap-width="100" fontset-name="fontset-0" placement="point" placement-type="simple" dx="6" dy="6" placements="NE, SE, E, N, S, NW, SW, W" fill="#271703" halo-fill="rgba(243, 237, 221, 0.8)" halo-radius="2.3" allow-overlap="false" minimum-padding="4" avoid-edges="true"><![CDATA[[name_en]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>400000</MaxScaleDenominator>
+    <MinScaleDenominator>200000</MinScaleDenominator>
+    <Filter>([type] = 'city') and ([prio] = 21) and ([is_capital] != 'country')</Filter>
+    <TextSymbolizer size="15" character-spacing="1" wrap-width="80" fontset-name="fontset-0" placement="point" placement-type="simple" dx="6" dy="6" placements="NE, SE, E, N, S, NW, SW, W" fill="#271703" halo-fill="rgba(243, 237, 221, 0.8)" halo-radius="2.3" allow-overlap="false" minimum-padding="4" avoid-edges="true"><![CDATA[[name_en]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>750000</MaxScaleDenominator>
+    <MinScaleDenominator>400000</MinScaleDenominator>
+    <Filter>([type] = 'city') and ([prio] = 21) and ([is_capital] != 'country')</Filter>
+    <TextSymbolizer size="14" wrap-width="70" fontset-name="fontset-0" placement="point" placement-type="simple" dx="6" dy="6" placements="NE, SE, E, N, S, NW, SW, W" fill="#271703" halo-fill="rgba(243, 237, 221, 0.8)" halo-radius="2.3" allow-overlap="false" minimum-padding="4" avoid-edges="true"><![CDATA[[name_en]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>1500000</MaxScaleDenominator>
+    <MinScaleDenominator>750000</MinScaleDenominator>
+    <Filter>([type] = 'city') and ([prio] = 21) and ([is_capital] != 'country')</Filter>
+    <TextSymbolizer size="13" wrap-width="60" fontset-name="fontset-0" placement="point" placement-type="simple" dx="6" dy="6" placements="NE, SE, E, N, S, NW, SW, W" fill="#271703" halo-fill="rgba(243, 237, 221, 0.8)" halo-radius="2.3" allow-overlap="false" minimum-padding="4" avoid-edges="true"><![CDATA[[name_en]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>6500000</MaxScaleDenominator>
+    <MinScaleDenominator>1500000</MinScaleDenominator>
+    <Filter>([type] = 'city') and ([prio] = 21) and ([is_capital] != 'country')</Filter>
+    <TextSymbolizer size="13" fontset-name="fontset-0" placement="point" placement-type="simple" dx="6" dy="6" placements="NE, SE, E, N, S, NW, SW, W" fill="#271703" halo-fill="rgba(243, 237, 221, 0.8)" halo-radius="2.3" allow-overlap="false" minimum-padding="4" avoid-edges="true"><![CDATA[[name_en]]]></TextSymbolizer>
+  </Rule>
+</Style>
+<Style name="label_places-points" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>6500000</MaxScaleDenominator>
+    <Filter>([type] = 'city') and ([prio] = 21)</Filter>
+    <PointSymbolizer file="/ssd/TileMill/icons/rev002/Point.svg" allow-overlap="false" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>750000</MaxScaleDenominator>
+    <Filter>([type] = 'town')</Filter>
+    <PointSymbolizer file="/ssd/TileMill/icons/rev002/Point_Town.svg" allow-overlap="false" />
+  </Rule>
+</Style>
+<Style name="label_places-capital" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([is_capital] = 'country')</Filter>
+    <TextSymbolizer size="17" wrap-width="1" wrap-before="true" wrap-character="_" fontset-name="fontset-0" fill="#271703" halo-fill="rgba(243, 237, 221, 0.8)" text-transform="uppercase" halo-radius="2" dy="4" dx="4" placement="point" placement-type="simple" placements="NE, SE, E, N, S, NW, SW, W" allow-overlap="true" minimum-padding="4" avoid-edges="true"><![CDATA[[name_en]]]></TextSymbolizer>
+    <PointSymbolizer file="/ssd/TileMill/icons/rev002/Capital.svg" allow-overlap="true" />
+  </Rule>
+</Style>
+<Style name="label_places-state" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>25000000</MaxScaleDenominator>
+    <MinScaleDenominator>1500000</MinScaleDenominator>
+    <Filter>([type] = 'state')</Filter>
+    <TextSymbolizer fontset-name="fontset-1" placement="point" allow-overlap="false" fill="#271703" halo-fill="rgba(243, 237, 221, 0.8)" halo-radius="1" minimum-distance="20" wrap-width="1" wrap-before="true" wrap-character="_" size="15" character-spacing="1" minimum-padding="10" line-spacing="1" avoid-edges="true"><![CDATA[[name_en]]]></TextSymbolizer>
+  </Rule>
+</Style>
+<Style name="label_places-country" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>50000000</MaxScaleDenominator>
+    <MinScaleDenominator>750000</MinScaleDenominator>
+    <Filter>([type] = 'country')</Filter>
+    <TextSymbolizer fontset-name="fontset-2" fill="#271703" halo-fill="rgba(243, 237, 221, 0.8)" halo-radius="2" size="19" wrap-width="1" wrap-before="true" wrap-character="_" minimum-padding="10" avoid-edges="true"><![CDATA[[name_en]]]></TextSymbolizer>
+  </Rule>
+</Style>
+<Layer name="label_places"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>label_places-country</StyleName>
+    <StyleName>label_places-state</StyleName>
+    <StyleName>label_places-capital</StyleName>
+    <StyleName>label_places-points</StyleName>
+    <StyleName>label_places-points/city</StyleName>
+    <StyleName>label_places-points/town</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+	<Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
+	<Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="table"><![CDATA[(SELECT osm_id AS id, way, 
+CASE
+WHEN place='country' THEN 1 
+WHEN capital='yes' THEN 10 
+WHEN place='state' THEN 20 
+WHEN place='city' THEN 21 
+WHEN place='town' THEN 30 
+WHEN place='village' THEN 40
+ELSE 100 END as prio,
+place AS type, 
+CASE
+WHEN capital='yes' THEN 'country' 
+ELSE NULL END AS is_capital, 
+
+CASE 
+WHEN left(optimizename(coalesce(tags->'name:en', tags->'int_name', name,ref)),2) = 
+upper(left(optimizename(coalesce(tags->'name:en', tags->'int_name', name,ref)),2)) 
+THEN
+concat(
+upper(left(optimizename(coalesce(tags->'name:en', tags->'int_name', name,ref)),1))  ,
+lower(substring(optimizename(coalesce(tags->'name:en', tags->'int_name', name,ref)),
+2,length(optimizename(coalesce(tags->'name:en', tags->'int_name', name,ref))) )))
+ELSE
+optimizename(coalesce(tags->'name:en', tags->'int_name', name,ref))
+END AS name_en, 
+
+CASE 
+WHEN left(optimizename(coalesce(tags->'name:de',name,'ref')),2) = 
+upper(left(optimizename(coalesce(tags->'name:de',name,'ref')),2)) 
+THEN
+concat(
+upper(left(optimizename(coalesce(tags->'name:de',name,'ref')),1))  ,
+lower(substring(optimizename(coalesce(tags->'name:de',name,'ref')),
+2,length(optimizename(coalesce(tags->'name:de',name,'ref'))) )))
+ELSE
+optimizename(coalesce(tags->'name:de',name,'ref'))
+END AS name_nat, 
+
+CASE 
+WHEN left(optimizename(coalesce(tags->'name:en', tags->'int_name', name,ref)),2) = 
+upper(left(optimizename(coalesce(tags->'name:en', tags->'int_name', name,ref)),2)) 
+THEN
+(CASE WHEN 
+optimizename(coalesce(tags->'name:en',tags->'int_name', name)) != optimizename(coalesce(tags->'name:de', name)) 
+AND optimizename(coalesce(tags->'name:de',name)) NOT LIKE  concat('%',optimizename(coalesce(tags->'name:en',tags->'int_name', name)),'%') 
+AND optimizename(coalesce(tags->'name:en', tags->'int_name', name)) NOT LIKE  concat('%', optimizename(coalesce(tags->'name:de', name)),'%') 
+THEN 
+concat(
+upper(left(optimizename(coalesce(tags->'name:en', tags->'int_name', name,ref)),1))  ,
+lower(substring(optimizename(coalesce(tags->'name:en', tags->'int_name', name,ref)),
+2,length(optimizename(coalesce(tags->'name:en', tags->'int_name', name,ref))) ))) || E'\n' || 
+concat(
+upper(left(optimizename(coalesce(tags->'name:de',name, ref)),1))  ,
+lower(substring(optimizename(coalesce(tags->'name:de',name, ref)),
+2,length(optimizename(coalesce(tags->'name:de',name, ref))) )))
+WHEN 
+optimizename(coalesce(tags->'name:en',tags->'int_name', name)) != optimizename(coalesce(tags->'name:de', name))
+AND optimizename(coalesce(tags->'name:de', name)) LIKE concat('%', optimizename(coalesce(tags->'name:en', tags->'int_name', name)),'%') 
+THEN 
+concat(
+upper(left(optimizename(coalesce(tags->'name:de',name, ref)),1))  ,
+lower(substring(optimizename(coalesce(tags->'name:de',name, ref)),
+2,length(optimizename(coalesce(tags->'name:de',name, ref))) )))
+ELSE 
+concat(
+upper(left(optimizename(coalesce(tags->'name:en', tags->'int_name', name,ref)),1))  ,
+lower(substring(optimizename(coalesce(tags->'name:en', tags->'int_name', name,ref)),
+2,length(optimizename(coalesce(tags->'name:en', tags->'int_name', name,ref))) )))END)
+ELSE
+(CASE WHEN 
+optimizename(coalesce(tags->'name:en',tags->'int_name', name)) != optimizename(coalesce(tags->'name:de', name)) 
+AND optimizename(coalesce(tags->'name:de',name)) NOT LIKE  concat('%',optimizename(coalesce(tags->'name:en',tags->'int_name', name)),'%') 
+AND optimizename(coalesce(tags->'name:en', tags->'int_name', name)) NOT LIKE  concat('%', optimizename(coalesce(tags->'name:de', name)),'%') 
+THEN 
+optimizename(coalesce(tags->'name:en',tags->'int_name', name, ref)) || E'\n' || optimizename(coalesce(tags->'name:de',name, ref))
+WHEN 
+optimizename(coalesce(tags->'name:en',tags->'int_name', name)) != optimizename(coalesce(tags->'name:de', name))
+AND optimizename(coalesce(tags->'name:de', name)) LIKE concat('%', optimizename(coalesce(tags->'name:en', tags->'int_name', name)),'%') 
+THEN 
+optimizename(coalesce(tags->'name:de',name,ref))
+ELSE 
+optimizename(coalesce(tags->'name:en', tags->'int_name', name,ref))END)
+END AS name_bil,
+
+CASE WHEN isnumeric(planet_osm_point.population) THEN REPLACE(planet_osm_point.population, ',', '.')::numeric ELSE '0':: numeric END AS population
+FROM planet_osm_point
+WHERE place in ('country', 'state', 'city', 'town') AND name IS NOT NULL
+  ORDER BY prio, (
+        CASE WHEN isnumeric(planet_osm_point.population) THEN replace(planet_osm_point.population, ','::text, ''::text)::numeric ELSE '0'::numeric END
+        ) ASC) AS label_places]]></Parameter>
+       <Parameter name="key_field"><![CDATA[id]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[way]]></Parameter>
+       <Parameter name="extent_cache"><![CDATA[custom]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,90]]></Parameter>
+       <Parameter name="dbname"><![CDATA[ngmaps]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[osm]]></Parameter>
+       <Parameter name="password"><![CDATA[test]]></Parameter>
+       <Parameter name="id"><![CDATA[label_places]]></Parameter>
+       <Parameter name="project"><![CDATA[rev_002_10k]]></Parameter>
+       <Parameter name="srs"><![CDATA[+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="label_roads_big" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'secondary') and ([reflen] = 12)</Filter>
+    <ShieldSymbolizer file="/ssd/TileMill/icons/rev002/secondary_shield_forLargeShields.svg" transform="scale(2.55,1.19)" size="10" fill="#f3eddd" fontset-name="fontset-2" minimum-distance="70" spacing="300" placement="line" placement-type="simple" avoid-edges="true" minimum-padding="10" allow-overlap="false" unlock-image="false"><![CDATA[[ref]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'secondary') and ([reflen] = 11)</Filter>
+    <ShieldSymbolizer file="/ssd/TileMill/icons/rev002/secondary_shield_forLargeShields.svg" transform="scale(2.55,1.19)" size="10" fill="#f3eddd" fontset-name="fontset-2" minimum-distance="70" spacing="300" placement="line" placement-type="simple" avoid-edges="true" minimum-padding="10" allow-overlap="false" unlock-image="false"><![CDATA[[ref]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'secondary') and ([reflen] = 10)</Filter>
+    <ShieldSymbolizer file="/ssd/TileMill/icons/rev002/secondary_shield_forLargeShields.svg" transform="scale(2.38,1.19)" size="10" fill="#f3eddd" fontset-name="fontset-2" minimum-distance="70" spacing="300" placement="line" placement-type="simple" avoid-edges="true" minimum-padding="10" allow-overlap="false" unlock-image="false"><![CDATA[[ref]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'secondary') and ([reflen] = 9)</Filter>
+    <ShieldSymbolizer file="/ssd/TileMill/icons/rev002/secondary_shield_forLargeShields.svg" transform="scale(2.21,1.19)" size="10" fill="#f3eddd" fontset-name="fontset-2" minimum-distance="70" spacing="300" placement="line" placement-type="simple" avoid-edges="true" minimum-padding="10" allow-overlap="false" unlock-image="false"><![CDATA[[ref]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'secondary') and ([reflen] = 8)</Filter>
+    <ShieldSymbolizer file="/ssd/TileMill/icons/rev002/secondary_shield_1.svg" transform="scale(2.8899999999999997,1.19)" size="10" fill="#f3eddd" fontset-name="fontset-2" minimum-distance="70" spacing="300" placement="line" placement-type="simple" avoid-edges="true" minimum-padding="10" allow-overlap="false" unlock-image="false"><![CDATA[[ref]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'secondary') and ([reflen] = 7)</Filter>
+    <ShieldSymbolizer file="/ssd/TileMill/icons/rev002/secondary_shield_1.svg" transform="scale(2.72,1.19)" size="10" fill="#f3eddd" fontset-name="fontset-2" minimum-distance="70" spacing="300" placement="line" placement-type="simple" avoid-edges="true" minimum-padding="10" allow-overlap="false" unlock-image="false"><![CDATA[[ref]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'secondary') and ([reflen] = 6)</Filter>
+    <ShieldSymbolizer file="/ssd/TileMill/icons/rev002/secondary_shield_1.svg" transform="scale(2.55,1.19)" size="10" fill="#f3eddd" fontset-name="fontset-2" minimum-distance="70" spacing="300" placement="line" placement-type="simple" avoid-edges="true" minimum-padding="10" allow-overlap="false" unlock-image="false"><![CDATA[[ref]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'secondary') and ([reflen] = 5)</Filter>
+    <ShieldSymbolizer file="/ssd/TileMill/icons/rev002/secondary_shield_1.svg" transform="scale(2.21,1.19)" size="10" fill="#f3eddd" fontset-name="fontset-2" minimum-distance="70" spacing="300" placement="line" placement-type="simple" avoid-edges="true" minimum-padding="10" allow-overlap="false" unlock-image="false"><![CDATA[[ref]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'secondary') and ([reflen] = 4)</Filter>
+    <ShieldSymbolizer file="/ssd/TileMill/icons/rev002/secondary_shield_1.svg" transform="scale(1.87,1.19)" size="10" fill="#f3eddd" fontset-name="fontset-2" minimum-distance="70" spacing="300" placement="line" placement-type="simple" avoid-edges="true" minimum-padding="10" allow-overlap="false" unlock-image="false"><![CDATA[[ref]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'secondary') and ([reflen] = 3)</Filter>
+    <ShieldSymbolizer file="/ssd/TileMill/icons/rev002/secondary_shield_1.svg" transform="scale(1.53,1.19)" size="10" fill="#f3eddd" fontset-name="fontset-2" minimum-distance="70" spacing="300" placement="line" placement-type="simple" avoid-edges="true" minimum-padding="10" allow-overlap="false" unlock-image="false"><![CDATA[[ref]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'secondary') and ([reflen] = 2)</Filter>
+    <ShieldSymbolizer file="/ssd/TileMill/icons/rev002/secondary_shield_1.svg" transform="scale(1.36,1.19)" size="10" fill="#f3eddd" fontset-name="fontset-2" minimum-distance="70" spacing="300" placement="line" placement-type="simple" avoid-edges="true" minimum-padding="10" allow-overlap="false" unlock-image="false"><![CDATA[[ref]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'secondary') and ([reflen] = 1)</Filter>
+    <ShieldSymbolizer file="/ssd/TileMill/icons/rev002/secondary_shield_1.svg" transform="scale(1.19,1.19)" size="10" fill="#f3eddd" fontset-name="fontset-2" minimum-distance="70" spacing="300" placement="line" placement-type="simple" avoid-edges="true" minimum-padding="10" allow-overlap="false" unlock-image="false"><![CDATA[[ref]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'primary') and ([reflen] = 12)</Filter>
+    <ShieldSymbolizer file="/ssd/TileMill/icons/rev002/primary_shield_forLargeShields.svg" transform="scale(2.55,1.19)" size="10" fill="#f3eddd" fontset-name="fontset-2" minimum-distance="70" spacing="300" placement="line" placement-type="simple" avoid-edges="true" minimum-padding="10" allow-overlap="false" unlock-image="false"><![CDATA[[ref]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'trunk') and ([reflen] = 12)</Filter>
+    <ShieldSymbolizer file="/ssd/TileMill/icons/rev002/primary_shield_forLargeShields.svg" transform="scale(2.55,1.19)" size="10" fill="#f3eddd" fontset-name="fontset-2" minimum-distance="70" spacing="300" placement="line" placement-type="simple" avoid-edges="true" minimum-padding="10" allow-overlap="false" unlock-image="false"><![CDATA[[ref]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'primary') and ([reflen] = 11)</Filter>
+    <ShieldSymbolizer file="/ssd/TileMill/icons/rev002/primary_shield_forLargeShields.svg" transform="scale(2.38,1.19)" size="10" fill="#f3eddd" fontset-name="fontset-2" minimum-distance="70" spacing="300" placement="line" placement-type="simple" avoid-edges="true" minimum-padding="10" allow-overlap="false" unlock-image="false"><![CDATA[[ref]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'trunk') and ([reflen] = 11)</Filter>
+    <ShieldSymbolizer file="/ssd/TileMill/icons/rev002/primary_shield_forLargeShields.svg" transform="scale(2.38,1.19)" size="10" fill="#f3eddd" fontset-name="fontset-2" minimum-distance="70" spacing="300" placement="line" placement-type="simple" avoid-edges="true" minimum-padding="10" allow-overlap="false" unlock-image="false"><![CDATA[[ref]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'primary') and ([reflen] = 10)</Filter>
+    <ShieldSymbolizer file="/ssd/TileMill/icons/rev002/primary_shield_forLargeShields.svg" transform="scale(2.21,1.19)" size="10" fill="#f3eddd" fontset-name="fontset-2" minimum-distance="70" spacing="300" placement="line" placement-type="simple" avoid-edges="true" minimum-padding="10" allow-overlap="false" unlock-image="false"><![CDATA[[ref]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'trunk') and ([reflen] = 10)</Filter>
+    <ShieldSymbolizer file="/ssd/TileMill/icons/rev002/primary_shield_forLargeShields.svg" transform="scale(2.21,1.19)" size="10" fill="#f3eddd" fontset-name="fontset-2" minimum-distance="70" spacing="300" placement="line" placement-type="simple" avoid-edges="true" minimum-padding="10" allow-overlap="false" unlock-image="false"><![CDATA[[ref]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'primary') and ([reflen] = 9)</Filter>
+    <ShieldSymbolizer file="/ssd/TileMill/icons/rev002/primary_shield_forLargeShields.svg" transform="scale(2.04,1.19)" size="10" fill="#f3eddd" fontset-name="fontset-2" minimum-distance="70" spacing="300" placement="line" placement-type="simple" avoid-edges="true" minimum-padding="10" allow-overlap="false" unlock-image="false"><![CDATA[[ref]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'trunk') and ([reflen] = 9)</Filter>
+    <ShieldSymbolizer file="/ssd/TileMill/icons/rev002/primary_shield_forLargeShields.svg" transform="scale(2.04,1.19)" size="10" fill="#f3eddd" fontset-name="fontset-2" minimum-distance="70" spacing="300" placement="line" placement-type="simple" avoid-edges="true" minimum-padding="10" allow-overlap="false" unlock-image="false"><![CDATA[[ref]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'primary') and ([reflen] = 8)</Filter>
+    <ShieldSymbolizer file="/ssd/TileMill/icons/rev002/primary_shield_1.svg" transform="scale(3.06,1.19)" size="10" fill="#f3eddd" fontset-name="fontset-2" minimum-distance="70" spacing="300" placement="line" placement-type="simple" avoid-edges="true" minimum-padding="10" allow-overlap="false" unlock-image="false"><![CDATA[[ref]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'trunk') and ([reflen] = 8)</Filter>
+    <ShieldSymbolizer file="/ssd/TileMill/icons/rev002/primary_shield_1.svg" transform="scale(3.06,1.19)" size="10" fill="#f3eddd" fontset-name="fontset-2" minimum-distance="70" spacing="300" placement="line" placement-type="simple" avoid-edges="true" minimum-padding="10" allow-overlap="false" unlock-image="false"><![CDATA[[ref]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'primary') and ([reflen] = 7)</Filter>
+    <ShieldSymbolizer file="/ssd/TileMill/icons/rev002/primary_shield_1.svg" transform="scale(2.72,1.19)" size="10" fill="#f3eddd" fontset-name="fontset-2" minimum-distance="70" spacing="300" placement="line" placement-type="simple" avoid-edges="true" minimum-padding="10" allow-overlap="false" unlock-image="false"><![CDATA[[ref]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'trunk') and ([reflen] = 7)</Filter>
+    <ShieldSymbolizer file="/ssd/TileMill/icons/rev002/primary_shield_1.svg" transform="scale(2.72,1.19)" size="10" fill="#f3eddd" fontset-name="fontset-2" minimum-distance="70" spacing="300" placement="line" placement-type="simple" avoid-edges="true" minimum-padding="10" allow-overlap="false" unlock-image="false"><![CDATA[[ref]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'trunk') and ([reflen] = 6)</Filter>
+    <ShieldSymbolizer file="/ssd/TileMill/icons/rev002/primary_shield_1.svg" transform="scale(2.38,1.19)" size="10" fill="#f3eddd" fontset-name="fontset-2" minimum-distance="70" spacing="300" placement="line" placement-type="simple" avoid-edges="true" minimum-padding="10" allow-overlap="false" unlock-image="false"><![CDATA[[ref]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'primary') and ([reflen] = 6)</Filter>
+    <ShieldSymbolizer file="/ssd/TileMill/icons/rev002/primary_shield_1.svg" transform="scale(2.38,1.19)" size="10" fill="#f3eddd" fontset-name="fontset-2" minimum-distance="70" spacing="300" placement="line" placement-type="simple" avoid-edges="true" minimum-padding="10" allow-overlap="false" unlock-image="false"><![CDATA[[ref]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'trunk') and ([reflen] = 5)</Filter>
+    <ShieldSymbolizer file="/ssd/TileMill/icons/rev002/primary_shield_1.svg" transform="scale(2.21,1.19)" size="10" fill="#f3eddd" fontset-name="fontset-2" minimum-distance="70" spacing="300" placement="line" placement-type="simple" avoid-edges="true" minimum-padding="10" allow-overlap="false" unlock-image="false"><![CDATA[[ref]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'primary') and ([reflen] = 5)</Filter>
+    <ShieldSymbolizer file="/ssd/TileMill/icons/rev002/primary_shield_1.svg" transform="scale(2.21,1.19)" size="10" fill="#f3eddd" fontset-name="fontset-2" minimum-distance="70" spacing="300" placement="line" placement-type="simple" avoid-edges="true" minimum-padding="10" allow-overlap="false" unlock-image="false"><![CDATA[[ref]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'trunk') and ([reflen] = 4)</Filter>
+    <ShieldSymbolizer file="/ssd/TileMill/icons/rev002/primary_shield_1.svg" transform="scale(1.87,1.19)" size="10" fill="#f3eddd" fontset-name="fontset-2" minimum-distance="70" spacing="300" placement="line" placement-type="simple" avoid-edges="true" minimum-padding="10" allow-overlap="false" unlock-image="false"><![CDATA[[ref]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'primary') and ([reflen] = 4)</Filter>
+    <ShieldSymbolizer file="/ssd/TileMill/icons/rev002/primary_shield_1.svg" transform="scale(1.87,1.19)" size="10" fill="#f3eddd" fontset-name="fontset-2" minimum-distance="70" spacing="300" placement="line" placement-type="simple" avoid-edges="true" minimum-padding="10" allow-overlap="false" unlock-image="false"><![CDATA[[ref]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'primary') and ([reflen] = 3)</Filter>
+    <ShieldSymbolizer file="/ssd/TileMill/icons/rev002/primary_shield_1.svg" transform="scale(1.53,1.19)" size="10" fill="#f3eddd" fontset-name="fontset-2" minimum-distance="70" spacing="300" placement="line" placement-type="simple" avoid-edges="true" minimum-padding="10" allow-overlap="false" unlock-image="false"><![CDATA[[ref]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'trunk') and ([reflen] = 3)</Filter>
+    <ShieldSymbolizer file="/ssd/TileMill/icons/rev002/primary_shield_1.svg" transform="scale(1.53,1.19)" size="10" fill="#f3eddd" fontset-name="fontset-2" minimum-distance="70" spacing="300" placement="line" placement-type="simple" avoid-edges="true" minimum-padding="10" allow-overlap="false" unlock-image="false"><![CDATA[[ref]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'primary') and ([reflen] = 2)</Filter>
+    <ShieldSymbolizer file="/ssd/TileMill/icons/rev002/primary_shield_1.svg" transform="scale(1.36,1.19)" size="10" fill="#f3eddd" fontset-name="fontset-2" minimum-distance="70" spacing="300" placement="line" placement-type="simple" avoid-edges="true" minimum-padding="10" allow-overlap="false" unlock-image="false"><![CDATA[[ref]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'trunk') and ([reflen] = 2)</Filter>
+    <ShieldSymbolizer file="/ssd/TileMill/icons/rev002/primary_shield_1.svg" transform="scale(1.36,1.19)" size="10" fill="#f3eddd" fontset-name="fontset-2" minimum-distance="70" spacing="300" placement="line" placement-type="simple" avoid-edges="true" minimum-padding="10" allow-overlap="false" unlock-image="false"><![CDATA[[ref]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'trunk') and ([reflen] = 1)</Filter>
+    <ShieldSymbolizer file="/ssd/TileMill/icons/rev002/primary_shield_1.svg" transform="scale(1.19,1.19)" size="10" fill="#f3eddd" fontset-name="fontset-2" minimum-distance="70" spacing="300" placement="line" placement-type="simple" avoid-edges="true" minimum-padding="10" allow-overlap="false" unlock-image="false"><![CDATA[[ref]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'primary') and ([reflen] = 1)</Filter>
+    <ShieldSymbolizer file="/ssd/TileMill/icons/rev002/primary_shield_1.svg" transform="scale(1.19,1.19)" size="10" fill="#f3eddd" fontset-name="fontset-2" minimum-distance="70" spacing="300" placement="line" placement-type="simple" avoid-edges="true" minimum-padding="10" allow-overlap="false" unlock-image="false"><![CDATA[[ref]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'motorway') and ([reflen] = 12)</Filter>
+    <ShieldSymbolizer file="/ssd/TileMill/icons/rev002/mot_shield_forLargeShields.svg" transform="scale(2.8899999999999997,1.19)" fill="#f3eddd" size="11" fontset-name="fontset-2" minimum-distance="70" spacing="300" placement="line" placement-type="simple" avoid-edges="true" minimum-padding="10" allow-overlap="false" unlock-image="false"><![CDATA[[ref]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'motorway') and ([reflen] = 11)</Filter>
+    <ShieldSymbolizer file="/ssd/TileMill/icons/rev002/mot_shield_forLargeShields.svg" transform="scale(2.55,1.19)" fill="#f3eddd" size="11" fontset-name="fontset-2" minimum-distance="70" spacing="300" placement="line" placement-type="simple" avoid-edges="true" minimum-padding="10" allow-overlap="false" unlock-image="false"><![CDATA[[ref]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'motorway') and ([reflen] = 10)</Filter>
+    <ShieldSymbolizer file="/ssd/TileMill/icons/rev002/mot_shield_forLargeShields.svg" transform="scale(2.38,1.19)" fill="#f3eddd" size="11" fontset-name="fontset-2" minimum-distance="70" spacing="300" placement="line" placement-type="simple" avoid-edges="true" minimum-padding="10" allow-overlap="false" unlock-image="false"><![CDATA[[ref]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'motorway') and ([reflen] = 9)</Filter>
+    <ShieldSymbolizer file="/ssd/TileMill/icons/rev002/mot_shield_forLargeShields.svg" transform="scale(2.21,1.19)" fill="#f3eddd" size="11" fontset-name="fontset-2" minimum-distance="70" spacing="300" placement="line" placement-type="simple" avoid-edges="true" minimum-padding="10" allow-overlap="false" unlock-image="false"><![CDATA[[ref]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'motorway') and ([reflen] = 8)</Filter>
+    <ShieldSymbolizer file="/ssd/TileMill/icons/rev002/mot_shield_1.svg" transform="scale(3.06,1.275)" fill="#f3eddd" size="11" fontset-name="fontset-2" minimum-distance="70" spacing="300" placement="line" placement-type="simple" avoid-edges="true" minimum-padding="10" allow-overlap="false" unlock-image="false"><![CDATA[[ref]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'motorway') and ([reflen] = 7)</Filter>
+    <ShieldSymbolizer file="/ssd/TileMill/icons/rev002/mot_shield_1.svg" transform="scale(2.8899999999999997,1.275)" fill="#f3eddd" size="11" fontset-name="fontset-2" minimum-distance="70" spacing="300" placement="line" placement-type="simple" avoid-edges="true" minimum-padding="10" allow-overlap="false" unlock-image="false"><![CDATA[[ref]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'motorway') and ([reflen] = 6)</Filter>
+    <ShieldSymbolizer file="/ssd/TileMill/icons/rev002/mot_shield_1.svg" transform="scale(2.72,1.275)" fill="#f3eddd" size="11" fontset-name="fontset-2" minimum-distance="70" spacing="300" placement="line" placement-type="simple" avoid-edges="true" minimum-padding="10" allow-overlap="false" unlock-image="false"><![CDATA[[ref]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'motorway') and ([reflen] = 5)</Filter>
+    <ShieldSymbolizer file="/ssd/TileMill/icons/rev002/mot_shield_1.svg" transform="scale(2.55,1.275)" fill="#f3eddd" size="11" fontset-name="fontset-2" minimum-distance="70" spacing="300" placement="line" placement-type="simple" avoid-edges="true" minimum-padding="10" allow-overlap="false" unlock-image="false"><![CDATA[[ref]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'motorway') and ([reflen] = 4)</Filter>
+    <ShieldSymbolizer file="/ssd/TileMill/icons/rev002/mot_shield_1.svg" transform="scale(2.21,1.275)" fill="#f3eddd" size="11" fontset-name="fontset-2" minimum-distance="70" spacing="300" placement="line" placement-type="simple" avoid-edges="true" minimum-padding="10" allow-overlap="false" unlock-image="false"><![CDATA[[ref]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'motorway') and ([reflen] = 3)</Filter>
+    <ShieldSymbolizer file="/ssd/TileMill/icons/rev002/mot_shield_1.svg" transform="scale(1.87,1.275)" fill="#f3eddd" size="11" fontset-name="fontset-2" minimum-distance="70" spacing="300" placement="line" placement-type="simple" avoid-edges="true" minimum-padding="10" allow-overlap="false" unlock-image="false"><![CDATA[[ref]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'motorway') and ([reflen] = 2)</Filter>
+    <ShieldSymbolizer file="/ssd/TileMill/icons/rev002/mot_shield_1.svg" transform="scale(1.53,1.275)" fill="#f3eddd" size="11" fontset-name="fontset-2" minimum-distance="70" spacing="300" placement="line" placement-type="simple" avoid-edges="true" minimum-padding="10" allow-overlap="false" unlock-image="false"><![CDATA[[ref]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([type] = 'motorway') and ([reflen] = 1)</Filter>
+    <ShieldSymbolizer file="/ssd/TileMill/icons/rev002/mot_shield_1.svg" transform="scale(1.19,1.275)" fill="#f3eddd" size="11" fontset-name="fontset-2" minimum-distance="70" spacing="300" placement="line" placement-type="simple" avoid-edges="true" minimum-padding="10" allow-overlap="false" unlock-image="false"><![CDATA[[ref]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([reflen] &lt;= 12) and ([type] = 'secondary')</Filter>
+    <ShieldSymbolizer size="10" fill="#f3eddd" fontset-name="fontset-2" minimum-distance="70" spacing="300" placement="line" placement-type="simple" file="/ssd/TileMill/icons/rev002/mot_shield_1.svg" avoid-edges="true" minimum-padding="10" allow-overlap="false" unlock-image="false"><![CDATA[[ref]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([reflen] &lt;= 12) and ([type] = 'primary')</Filter>
+    <ShieldSymbolizer size="10" fill="#f3eddd" fontset-name="fontset-2" minimum-distance="70" spacing="300" placement="line" placement-type="simple" file="/ssd/TileMill/icons/rev002/mot_shield_1.svg" avoid-edges="true" minimum-padding="10" allow-overlap="false" unlock-image="false"><![CDATA[[ref]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([reflen] &lt;= 12) and ([type] = 'trunk')</Filter>
+    <ShieldSymbolizer size="10" fill="#f3eddd" fontset-name="fontset-2" minimum-distance="70" spacing="300" placement="line" placement-type="simple" file="/ssd/TileMill/icons/rev002/mot_shield_1.svg" avoid-edges="true" minimum-padding="10" allow-overlap="false" unlock-image="false"><![CDATA[[ref]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([reflen] &lt;= 12) and ([type] = 'motorway')</Filter>
+    <ShieldSymbolizer fill="#f3eddd" size="11" fontset-name="fontset-2" minimum-distance="70" spacing="300" placement="line" placement-type="simple" file="/ssd/TileMill/icons/rev002/mot_shield_1.svg" avoid-edges="true" minimum-padding="10" allow-overlap="false" unlock-image="false"><![CDATA[[ref]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([reflen] &lt;= 12)</Filter>
+    <ShieldSymbolizer size="11" fontset-name="fontset-2" minimum-distance="70" spacing="300" placement="line" placement-type="simple" file="/ssd/TileMill/icons/rev002/mot_shield_1.svg" avoid-edges="true" minimum-padding="10" allow-overlap="false" unlock-image="false"><![CDATA[[ref]]]></ShieldSymbolizer>
+  </Rule>
+</Style>
+<Layer name="label_roads_big"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>label_roads_big</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+	<Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
+	<Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="table"><![CDATA[( SELECT id,
+ geom,
+ type,
+ ref,
+ reflen
+ FROM line_roads_big_label
+ WHERE type IN ('motorway','trunk','primary','secondary') AND z(!scale_denominator!) > 0
+) AS line_big_roads_label]]></Parameter>
+       <Parameter name="key_field"><![CDATA[id]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
+       <Parameter name="extent_cache"><![CDATA[custom]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,90]]></Parameter>
+       <Parameter name="dbname"><![CDATA[ngmaps]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[osm]]></Parameter>
+       <Parameter name="password"><![CDATA[test]]></Parameter>
+       <Parameter name="id"><![CDATA[label_roads_big]]></Parameter>
+       <Parameter name="project"><![CDATA[rev_002_100k]]></Parameter>
+       <Parameter name="srs"><![CDATA[+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="label_airport" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <TextSymbolizer size="11" wrap-width="50" fontset-name="fontset-3" fill="#656582" halo-fill="#f3eddd" halo-radius="1" placement-type="simple" placements="SE,SW,NE,NW,N,S,E,W,11,10,9" dx="4" dy="-10" minimum-padding="10" avoid-edges="true"><![CDATA[[icao_code]]]></TextSymbolizer>
+  </Rule>
+</Style>
+<Layer name="label_airport"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>label_airport</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+	<Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
+	<Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="table"><![CDATA[(
+SELECT DISTINCT ON (icao_code) * from 
+(SELECT 
+osm_id AS id,
+ ST_Centroid(way) as way,
+ aeroway AS type,
+ CASE WHEN length(tags -> 'icao') < 12 THEN tags -> 'icao' ELSE NULL END AS icao_code,
+
+optimizename(streetnames(coalesce(tags->'name:en', tags->'int_name', name,ref))) AS name_en, 
+optimizename(streetnames(coalesce(tags->'name:de',name,'ref'))) AS name_nat, 
+
+CASE WHEN 
+optimizename(streetnames(coalesce(tags->'name:en',tags->'int_name', name))) != optimizename(streetnames(coalesce(tags->'name:de', name))) 
+AND optimizename(streetnames(coalesce(tags->'name:de',name))) NOT LIKE  concat('%',optimizename(streetnames(coalesce(tags->'name:en',tags->'int_name', name))),'%') 
+AND optimizename(streetnames(coalesce(tags->'name:en', tags->'int_name', name))) NOT LIKE  concat('%', optimizename(streetnames(coalesce(tags->'name:de', name))),'%') 
+THEN 
+optimizename(streetnames(coalesce(tags->'name:en',tags->'int_name', name, ref))) || E'\n' || optimizename(streetnames(coalesce(tags->'name:de',name, ref))) 
+WHEN 
+optimizename(streetnames(coalesce(tags->'name:en',tags->'int_name', name))) != optimizename(streetnames(coalesce(tags->'name:de', name)))
+AND optimizename(streetnames(coalesce(tags->'name:de', name))) LIKE concat('%', optimizename(streetnames(coalesce(tags->'name:en', tags->'int_name', name))),'%') 
+THEN 
+optimizename(streetnames(coalesce(tags->'name:de',name,ref)))
+ELSE 
+optimizename(streetnames(coalesce(tags->'name:en', tags->'int_name', name,ref))) 
+END AS name_bil
+
+FROM planet_osm_polygon
+WHERE aeroway IN ('aerodrome') AND (planet_osm_polygon.name IS NOT NULL OR (tags ->'icao') IS NOT NULL)
+
+UNION
+
+SELECT 
+osm_id AS id,
+way, 
+aeroway AS type, 
+CASE WHEN length(tags -> 'icao') < 12 THEN tags -> 'icao' ELSE NULL END AS icao_code,
+
+
+optimizename(streetnames(coalesce(tags->'name:en', tags->'int_name', name,ref))) AS name_en, 
+optimizename(streetnames(coalesce(tags->'name:de',name,'ref'))) AS name_nat, 
+
+CASE WHEN 
+optimizename(streetnames(coalesce(tags->'name:en',tags->'int_name', name))) != optimizename(streetnames(coalesce(tags->'name:de', name))) 
+AND optimizename(streetnames(coalesce(tags->'name:de',name))) NOT LIKE  concat('%',optimizename(streetnames(coalesce(tags->'name:en',tags->'int_name', name))),'%') 
+AND optimizename(streetnames(coalesce(tags->'name:en', tags->'int_name', name))) NOT LIKE  concat('%', optimizename(streetnames(coalesce(tags->'name:de', name))),'%') 
+THEN 
+optimizename(streetnames(coalesce(tags->'name:en',tags->'int_name', name, ref))) || E'\n' || optimizename(streetnames(coalesce(tags->'name:de',name, ref))) 
+WHEN 
+optimizename(streetnames(coalesce(tags->'name:en',tags->'int_name', name))) != optimizename(streetnames(coalesce(tags->'name:de', name)))
+AND optimizename(streetnames(coalesce(tags->'name:de', name))) LIKE concat('%', optimizename(streetnames(coalesce(tags->'name:en', tags->'int_name', name))),'%') 
+THEN 
+optimizename(streetnames(coalesce(tags->'name:de',name,ref)))
+ELSE 
+optimizename(streetnames(coalesce(tags->'name:en', tags->'int_name', name,ref))) 
+END AS name_bil
+
+FROM planet_osm_point
+WHERE aeroway IN ('aerodrome') AND (planet_osm_point.name IS NOT NULL OR (tags ->'icao') IS NOT NULL)) as a
+ WHERE z(!scale_denominator!) > 0)  AS label_airport]]></Parameter>
+       <Parameter name="key_field"><![CDATA[id]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[way]]></Parameter>
+       <Parameter name="extent_cache"><![CDATA[custom]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,90]]></Parameter>
+       <Parameter name="dbname"><![CDATA[ngmaps]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[osm]]></Parameter>
+       <Parameter name="password"><![CDATA[test]]></Parameter>
+       <Parameter name="id"><![CDATA[label_airport]]></Parameter>
+       <Parameter name="project"><![CDATA[rev_002_100k]]></Parameter>
+       <Parameter name="srs"><![CDATA[+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="point_harbour_high" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <PointSymbolizer file="/ssd/TileMill/icons/rev002/hafen.svg" transform="scale(0.7,0.7)" allow-overlap="false" />
+  </Rule>
+</Style>
+<Layer name="point_harbour_high"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>point_harbour_high</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+	<Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
+	<Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="table"><![CDATA[(SELECT *
+FROM point_harbour_high WHERE  z(!scale_denominator!) > 0) AS point_harbour]]></Parameter>
+       <Parameter name="key_field"><![CDATA[id]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
+       <Parameter name="extent_cache"><![CDATA[custom]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,90]]></Parameter>
+       <Parameter name="dbname"><![CDATA[ngmaps]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[osm]]></Parameter>
+       <Parameter name="password"><![CDATA[test]]></Parameter>
+       <Parameter name="id"><![CDATA[point_harbour_high]]></Parameter>
+       <Parameter name="project"><![CDATA[rev_002_100k]]></Parameter>
+       <Parameter name="srs"><![CDATA[+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="point_tower" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>200000</MaxScaleDenominator>
+    <Filter>([type] = 'tower')</Filter>
+    <PointSymbolizer file="/ssd/TileMill/icons/rev002/tower.svg" transform="scale(1,1)" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>200000</MaxScaleDenominator>
+    <Filter>([type] = 'tourism_tower')</Filter>
+    <PointSymbolizer file="/ssd/TileMill/icons/rev002/touristtower.svg" transform="scale(1.2,1.2)" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>200000</MaxScaleDenominator>
+    <Filter>([type] = 'offshore_platform')</Filter>
+    <PointSymbolizer file="/ssd/TileMill/icons/rev002/bohrinsel.svg" transform="scale(1.5,1.5)" allow-overlap="true" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>200000</MaxScaleDenominator>
+    <Filter>([type] = 'communication_mast')</Filter>
+    <PointSymbolizer file="/ssd/TileMill/icons/rev002/funkturm.svg" transform="scale(1.5,1.5)" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>200000</MaxScaleDenominator>
+    <Filter>([type] = 'wind_turbine')</Filter>
+    <PointSymbolizer file="/ssd/TileMill/icons/rev002/windpower.svg" transform="scale(1,1)" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>200000</MaxScaleDenominator>
+    <Filter>([type] = 'beacon')</Filter>
+    <PointSymbolizer file="/ssd/TileMill/icons/rev002/leuchtfeuer.svg" transform="scale(1,1)" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>200000</MaxScaleDenominator>
+    <Filter>([type] = 'lighthouse')</Filter>
+    <PointSymbolizer file="/ssd/TileMill/icons/rev002/lighthouse.svg" transform="scale(0.8,0.8)" />
+  </Rule>
+</Style>
+<Layer name="point_tower"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>point_tower</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+	<Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
+	<Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="table"><![CDATA[(SELECT *
+FROM point_tower_high WHERE type IN ('communication_mast','lighthouse','offshore_platform') AND 
+ z(!scale_denominator!) > 0)
+AS point_tower]]></Parameter>
+       <Parameter name="key_field"><![CDATA[id]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
+       <Parameter name="extent_cache"><![CDATA[custom]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,90]]></Parameter>
+       <Parameter name="dbname"><![CDATA[ngmaps]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[osm]]></Parameter>
+       <Parameter name="password"><![CDATA[test]]></Parameter>
+       <Parameter name="id"><![CDATA[point_tower]]></Parameter>
+       <Parameter name="project"><![CDATA[rev_002_100k]]></Parameter>
+       <Parameter name="srs"><![CDATA[+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="point_helipad" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <MarkersSymbolizer file="/ssd/TileMill/icons/rev002/Helipad.svg" transform="scale(1.3,1.3)" ignore-placement="false" allow-overlap="false" multi-policy="whole" />
+  </Rule>
+</Style>
+<Layer name="point_helipad"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>point_helipad</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+	<Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
+	<Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="table"><![CDATA[(SELECT * 
+FROM point_helipad WHERE z(!scale_denominator!) > 0) AS point_helipad]]></Parameter>
+       <Parameter name="key_field"><![CDATA[id]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
+       <Parameter name="extent_cache"><![CDATA[custom]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,90]]></Parameter>
+       <Parameter name="dbname"><![CDATA[ngmaps]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[osm]]></Parameter>
+       <Parameter name="password"><![CDATA[test]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="point_aerialway" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>200000</MaxScaleDenominator>
+    <Filter>([type] = 'station')</Filter>
+    <MarkersSymbolizer width="2" fill="#888888" allow-overlap="false" ignore-placement="true" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>200000</MaxScaleDenominator>
+    <Filter>([type] = 'pylon')</Filter>
+    <MarkersSymbolizer width="1" fill="#8b7e7e" allow-overlap="false" ignore-placement="true" />
+  </Rule>
+</Style>
+<Layer name="point_aerialway"
+  srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
+    <StyleName>point_aerialway</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+	<Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
+	<Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="table"><![CDATA[(SELECT id, geom, type
+FROM point_aerialway WHERE z(!scale_denominator!) > 0)
+AS point_aerialway]]></Parameter>
+       <Parameter name="key_field"><![CDATA[id]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
+       <Parameter name="extent_cache"><![CDATA[custom]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,90]]></Parameter>
+       <Parameter name="dbname"><![CDATA[ngmaps]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[osm]]></Parameter>
+       <Parameter name="password"><![CDATA[test]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="point_peak" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>200000</MaxScaleDenominator>
+    <PointSymbolizer file="/ssd/TileMill/icons/rev002/HoehenpunktGruen.svg" transform="scale(1.04,1.04)" allow-overlap="false" ignore-placement="false" />
+  </Rule>
+</Style>
+<Layer name="point_peak"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>point_peak</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+	<Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
+	<Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="table"><![CDATA[(SELECT * 
+FROM point_peak WHERE z(!scale_denominator!) > 0 ORDER BY height_feet DESC LIMIT 150000) AS point_peak]]></Parameter>
+       <Parameter name="key_field"><![CDATA[id]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
+       <Parameter name="extent_cache"><![CDATA[custom]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,90]]></Parameter>
+       <Parameter name="dbname"><![CDATA[ngmaps]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[osm]]></Parameter>
+       <Parameter name="password"><![CDATA[test]]></Parameter>
+       <Parameter name="id"><![CDATA[point_peak]]></Parameter>
+       <Parameter name="project"><![CDATA[rev_002_100k]]></Parameter>
+       <Parameter name="srs"><![CDATA[+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="point_volcano" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>200000</MaxScaleDenominator>
+    <MarkersSymbolizer file="/ssd/TileMill/icons/rev002/vulcano.svg" allow-overlap="false" ignore-placement="false" transform="scale(2.5,2.5)" />
+  </Rule>
+</Style>
+<Layer name="point_volcano"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>point_volcano</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+	<Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
+	<Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="table"><![CDATA[(SELECT * 
+FROM point_volcano WHERE z(!scale_denominator!) > 0) AS point_volcano]]></Parameter>
+       <Parameter name="key_field"><![CDATA[id]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
+       <Parameter name="extent_cache"><![CDATA[custom]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,90]]></Parameter>
+       <Parameter name="dbname"><![CDATA[ngmaps]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[osm]]></Parameter>
+       <Parameter name="password"><![CDATA[test]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="label_forest" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <TextSymbolizer size="13" fontset-name="fontset-4" fill="#196231" halo-fill="#e5f5f9" wrap-width="50" character-spacing="1" halo-radius="1" minimum-padding="10" avoid-edges="true"><![CDATA[[name_en]]]></TextSymbolizer>
+  </Rule>
+</Style>
+<Layer name="label_forest"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>label_forest</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+	<Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
+	<Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="table"><![CDATA[( SELECT planet_osm_polygon.osm_id AS id,
+    planet_osm_polygon.way,
+   area_ngmaps(planet_osm_polygon.way) AS area,
+
+optimizename(streetnames(coalesce(tags->'name:en', tags->'int_name', name,ref))) AS name_en, 
+optimizename(streetnames(coalesce(tags->'name:de',name,'ref'))) AS name_nat, 
+
+CASE WHEN 
+optimizename(streetnames(coalesce(tags->'name:en',tags->'int_name', name))) != optimizename(streetnames(coalesce(tags->'name:de', name))) 
+AND optimizename(streetnames(coalesce(tags->'name:de',name))) NOT LIKE  concat('%',optimizename(streetnames(coalesce(tags->'name:en',tags->'int_name', name))),'%') 
+AND optimizename(streetnames(coalesce(tags->'name:en', tags->'int_name', name))) NOT LIKE  concat('%', optimizename(streetnames(coalesce(tags->'name:de', name))),'%') 
+THEN 
+optimizename(streetnames(coalesce(tags->'name:en',tags->'int_name', name, ref))) || E'\n' || optimizename(streetnames(coalesce(tags->'name:de',name, ref))) 
+WHEN 
+optimizename(streetnames(coalesce(tags->'name:en',tags->'int_name', name))) != optimizename(streetnames(coalesce(tags->'name:de', name)))
+AND optimizename(streetnames(coalesce(tags->'name:de', name))) LIKE concat('%', optimizename(streetnames(coalesce(tags->'name:en', tags->'int_name', name))),'%') 
+THEN 
+optimizename(streetnames(coalesce(tags->'name:de',name,ref)))
+ELSE 
+optimizename(streetnames(coalesce(tags->'name:en', tags->'int_name', name,ref))) 
+END AS name_bil
+
+
+   FROM planet_osm_polygon
+  WHERE (planet_osm_polygon.landuse = 'forest'::text AND planet_osm_polygon.name IS NOT NULL)
+AND area_ngmaps(planet_osm_polygon.way) > 3000000
+ AND z(!scale_denominator!) > 0) AS forest_label]]></Parameter>
+       <Parameter name="key_field"><![CDATA[id]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[way]]></Parameter>
+       <Parameter name="extent_cache"><![CDATA[custom]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,90]]></Parameter>
+       <Parameter name="dbname"><![CDATA[ngmaps]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[osm]]></Parameter>
+       <Parameter name="password"><![CDATA[test]]></Parameter>
+       <Parameter name="id"><![CDATA[label_forest]]></Parameter>
+       <Parameter name="project"><![CDATA[rev_002_100k]]></Parameter>
+       <Parameter name="srs"><![CDATA[+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="label_river" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <TextSymbolizer size="14" fontset-name="fontset-3" fill="#1773b1" halo-fill="#deedf6" halo-radius="1" placement="line" minimum-distance="300" minimum-padding="10" avoid-edges="true"><![CDATA[[name_en]]]></TextSymbolizer>
+  </Rule>
+</Style>
+<Layer name="label_river"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>label_river</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+	<Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
+	<Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="table"><![CDATA[(SELECT osm_id AS id, way, waterway AS type,
+
+optimizename(coalesce (tags->'name:en', tags->'int_name', name)) AS name_en, 
+optimizename(coalesce (tags->'name:de', name)) AS name_nat, 
+
+CASE WHEN 
+coalesce (tags->'name:en',tags->'int_name', name) != coalesce (tags->'name:de',name) 
+AND coalesce (tags->'name:de',name) NOT LIKE  concat('%', coalesce (tags->'name:en',tags->'int_name', name),'%') 
+AND coalesce (tags->'name:en',tags->'int_name', name) NOT LIKE  concat('%', coalesce (tags->'name:de',name),'%') 
+THEN 
+optimizename((coalesce (tags->'name:en',tags->'int_name', name) || E'\n' || coalesce (tags->'name:de',name))) 
+WHEN 
+coalesce (tags->'name:en',tags->'int_name', name) != coalesce (tags->'name:de',name) 
+AND coalesce (tags->'name:de',name) LIKE concat('%', coalesce (tags->'name:en',tags->'int_name', name),'%') 
+THEN 
+optimizename(coalesce (tags->'name:de',name))
+ELSE 
+optimizename(coalesce (tags->'name:en',tags->'int_name', name)) 
+END AS name_bil
+
+
+FROM planet_osm_line WHERE (waterway IN ('river', 'canal') AND name IS NOT NULL) AND z(!scale_denominator!) > 0) AS label_river]]></Parameter>
+       <Parameter name="key_field"><![CDATA[id]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[way]]></Parameter>
+       <Parameter name="extent_cache"><![CDATA[custom]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,90]]></Parameter>
+       <Parameter name="dbname"><![CDATA[ngmaps]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[osm]]></Parameter>
+       <Parameter name="password"><![CDATA[test]]></Parameter>
+       <Parameter name="id"><![CDATA[label_river]]></Parameter>
+       <Parameter name="project"><![CDATA[rev_002_100k]]></Parameter>
+       <Parameter name="srs"><![CDATA[+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="label_admin" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <TextSymbolizer size="10" fontset-name="fontset-3" fill="#93006c" halo-fill="#b4b4b4" halo-radius="0.5" placement="line" minimum-distance="200" dy="12" max-char-angle-delta="15" minimum-padding="10" avoid-edges="true"><![CDATA[[name_en]]]></TextSymbolizer>
+  </Rule>
+</Style>
+<Layer name="label_admin"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>label_admin</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+	<Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
+	<Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="table"><![CDATA[(SELECT osm_id AS id, way, admin_level, boundary,
+
+optimizename(coalesce (tags->'name:en', tags->'int_name', name)) AS name_en, 
+optimizename(coalesce (tags->'name:de', name)) AS name_nat, 
+
+CASE WHEN 
+coalesce (tags->'name:en',tags->'int_name', name) != coalesce (tags->'name:de',name) 
+AND coalesce (tags->'name:de',name) NOT LIKE  concat('%', coalesce (tags->'name:en',tags->'int_name', name),'%') 
+AND coalesce (tags->'name:en',tags->'int_name', name) NOT LIKE  concat('%', coalesce (tags->'name:de',name),'%') 
+THEN 
+optimizename((coalesce (tags->'name:en',tags->'int_name', name) || E'\n' || coalesce (tags->'name:de',name))) 
+WHEN 
+coalesce (tags->'name:en',tags->'int_name', name) != coalesce (tags->'name:de',name) 
+AND coalesce (tags->'name:de',name) LIKE concat('%', coalesce (tags->'name:en',tags->'int_name', name),'%') 
+THEN 
+optimizename(coalesce (tags->'name:de',name))
+ELSE 
+optimizename(coalesce (tags->'name:en',tags->'int_name', name)) 
+END AS name_bil
+
+
+FROM planet_osm_line 
+WHERE (admin_level IN ('2', '3', '4') 
+AND boundary IN ('administrative') AND name IS NOT NULL) AND z(!scale_denominator!) > 0 ORDER BY admin_level) AS label_admin]]></Parameter>
+       <Parameter name="key_field"><![CDATA[id]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[way]]></Parameter>
+       <Parameter name="extent_cache"><![CDATA[custom]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,90]]></Parameter>
+       <Parameter name="dbname"><![CDATA[ngmaps]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[osm]]></Parameter>
+       <Parameter name="password"><![CDATA[test]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="label_water" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <TextSymbolizer size="14" fontset-name="fontset-3" fill="#1773b1" halo-fill="#deedf6" halo-radius="1" wrap-width="50" minimum-padding="10" avoid-edges="true"><![CDATA[[name_en]]]></TextSymbolizer>
+  </Rule>
+</Style>
+<Layer name="label_water"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>label_water</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+	<Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
+	<Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="table"><![CDATA[  ( SELECT planet_osm_polygon.osm_id AS id,
+            planet_osm_polygon.way ,
+          
+optimizename(coalesce (tags->'name:en', tags->'int_name', name)) AS name_en, 
+optimizename(coalesce (tags->'name:de', name)) AS name_nat, 
+
+CASE WHEN 
+coalesce (tags->'name:en',tags->'int_name', name) != coalesce (tags->'name:de',name) 
+AND coalesce (tags->'name:de',name) NOT LIKE  concat('%', coalesce (tags->'name:en',tags->'int_name', name),'%') 
+AND coalesce (tags->'name:en',tags->'int_name', name) NOT LIKE  concat('%', coalesce (tags->'name:de',name),'%') 
+THEN 
+optimizename((coalesce (tags->'name:en',tags->'int_name', name) || E'\n' || coalesce (tags->'name:de',name))) 
+WHEN 
+coalesce (tags->'name:en',tags->'int_name', name) != coalesce (tags->'name:de',name) 
+AND coalesce (tags->'name:de',name) LIKE concat('%', coalesce (tags->'name:en',tags->'int_name', name),'%') 
+THEN 
+optimizename(coalesce (tags->'name:de',name))
+ELSE 
+optimizename(coalesce (tags->'name:en',tags->'int_name', name)) 
+END AS name_bil,
+
+           COALESCE(planet_osm_polygon.natural, planet_osm_polygon.place) AS type,
+           area_ngmaps(planet_osm_polygon.way) AS area
+           FROM planet_osm_polygon
+  WHERE ((planet_osm_polygon."natural" = ANY (ARRAY['water'::text, 'lake'::text])) OR (planet_osm_polygon.waterway = ANY (ARRAY['basin'::text, 'dam'::text])) OR (planet_osm_polygon.landuse = ANY (ARRAY['reservoir'::text, 'salt_pond'::text])) OR planet_osm_polygon.water IS NOT NULL
+  AND planet_osm_polygon.name IS NOT NULL)
+AND  area_ngmaps(planet_osm_polygon.way) > 300000  AND z(!scale_denominator!) > 0 ) AS water_label]]></Parameter>
+       <Parameter name="key_field"><![CDATA[id]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[way]]></Parameter>
+       <Parameter name="extent_cache"><![CDATA[custom]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,90]]></Parameter>
+       <Parameter name="dbname"><![CDATA[ngmaps]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[osm]]></Parameter>
+       <Parameter name="password"><![CDATA[test]]></Parameter>
+       <Parameter name="id"><![CDATA[label_water]]></Parameter>
+       <Parameter name="project"><![CDATA[rev_002_10k]]></Parameter>
+       <Parameter name="srs"><![CDATA[+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="label_naturalreserve" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <TextSymbolizer size="13" fontset-name="fontset-3" fill="#196231" halo-fill="#e5f5f9" wrap-width="70" character-spacing="1" halo-radius="1.5" minimum-distance="40" minimum-padding="10" avoid-edges="true"><![CDATA[[name_en]]]></TextSymbolizer>
+  </Rule>
+</Style>
+<Layer name="label_naturalreserve"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>label_naturalreserve</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+	<Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
+	<Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="table"><![CDATA[(SELECT osm_id AS id, way , COALESCE (boundary, leisure, landuse) as type, 
+area_ngmaps(planet_osm_polygon.way) AS area,
+optimizename(coalesce (tags->'name:en', tags->'int_name', name)) AS name_en, 
+optimizename(coalesce (tags->'name:de', name)) AS name_nat, 
+
+CASE WHEN 
+coalesce (tags->'name:en',tags->'int_name', name) != coalesce (tags->'name:de',name) 
+AND coalesce (tags->'name:de',name) NOT LIKE  concat('%', coalesce (tags->'name:en',tags->'int_name', name),'%') 
+AND coalesce (tags->'name:en',tags->'int_name', name) NOT LIKE  concat('%', coalesce (tags->'name:de',name),'%') 
+THEN 
+optimizename((coalesce (tags->'name:en',tags->'int_name', name) || E'\n' || coalesce (tags->'name:de',name))) 
+WHEN 
+coalesce (tags->'name:en',tags->'int_name', name) != coalesce (tags->'name:de',name) 
+AND coalesce (tags->'name:de',name) LIKE concat('%', coalesce (tags->'name:en',tags->'int_name', name),'%') 
+THEN 
+optimizename(coalesce (tags->'name:de',name))
+ELSE 
+optimizename(coalesce (tags->'name:en',tags->'int_name', name)) 
+END AS name_bil
+
+FROM planet_osm_polygon
+WHERE ((leisure IN ('nature_reserve')  
+OR boundary IN ('national_park', 'protected_area', 'nature_reserve') 
+OR landuse IN ('nature_reserve'))
+AND building IS NULL AND name IS NOT NULL AND area_ngmaps(planet_osm_polygon.way) >= 5000000 ) AND z(!scale_denominator!) > 0 ORDER BY area) 
+ AS naturalreserve_label_low]]></Parameter>
+       <Parameter name="key_field"><![CDATA[id]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[way]]></Parameter>
+       <Parameter name="extent_cache"><![CDATA[custom]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,90]]></Parameter>
+       <Parameter name="dbname"><![CDATA[ngmaps]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[osm]]></Parameter>
+       <Parameter name="password"><![CDATA[test]]></Parameter>
+       <Parameter name="id"><![CDATA[label_naturalreserve]]></Parameter>
+       <Parameter name="project"><![CDATA[rev_002_100k]]></Parameter>
+       <Parameter name="srs"><![CDATA[+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="label_contour" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>200000</MaxScaleDenominator>
+    <Filter>([group] = 100)</Filter>
+    <TextSymbolizer size="7" fontset-name="fontset-3" fill="#686868" halo-fill="#e7e7e7" halo-radius="1" placement="line" spacing="300" minimum-distance="200" minimum-path-length="300" avoid-edges="true"><![CDATA[[ele]]]></TextSymbolizer>
+  </Rule>
+</Style>
+<Layer name="label_contour"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>label_contour</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+	<Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
+	<Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="table"><![CDATA[(SELECT 
+round(ele* 3.2808399) AS ele, 
+wkb_geometry, fid,
+CASE 
+WHEN (ele % 100::numeric) = 0::numeric THEN 100
+WHEN (ele % 50::numeric) = 0::numeric THEN 50
+ELSE 10 END AS group
+ from contour.world_contour_lines
+WHERE ele != 0
+AND length_ngmaps(wkb_geometry) > 500
+ AND 
+ (((ele % 50::numeric) = 0::numeric ) or ((ele % 100::numeric) = 0::numeric ) or ((ele % 200::numeric) = 0::numeric))) AS contour]]></Parameter>
+       <Parameter name="key_field"><![CDATA[fid]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[wkb_geometry]]></Parameter>
+       <Parameter name="extent_cache"><![CDATA[custom]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,90]]></Parameter>
+       <Parameter name="dbname"><![CDATA[contour]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[osm]]></Parameter>
+       <Parameter name="password"><![CDATA[test]]></Parameter>
+    </Datasource>
+  </Layer>
+
+</Map>
