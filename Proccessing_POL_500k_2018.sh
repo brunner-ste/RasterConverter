@@ -15,6 +15,15 @@ ARCHIVE=''$HOME'/server/Eanserver18/raster/tmp/BR/itcom_lpr/500k/icao_'$ISO'_201
 CONVERTED=''$HOME'/server/Eanserver18/raster/tmp/BR/itcom_lpr/500k/icao_'$ISO'_2018'
 PACK=''$HOME'/server/Eanserver18/raster/tmp/BR/itcom_lpr/500k/icao_'$ISO'_2018/icao_'$ISO'_2018.pck*'
 
+clear
+
+##################################
+echo ' '
+date
+echo Gestartet um: > log_$NAME
+date >> log_$NAME
+##################################
+
 mkdir $NAME
 mkdir tif_rgba
 
@@ -63,6 +72,12 @@ date
 echo ' '
 echo 'Konvertierung und Ablage aller Daten abgeschlossen...'
 echo ' '
+
+##################################
+echo ' ' >> log_$NAME
+echo Fertig um: >> log_$NAME
+date >> log_$NAME
+##################################
 
 read -p "Temporaere Daten loeschen? (j/n)?" WAHL
 
