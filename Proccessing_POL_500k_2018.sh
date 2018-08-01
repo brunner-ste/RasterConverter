@@ -1,7 +1,9 @@
 #!/bin/bash
 
 # ICAO Poland 2018
-
+#########################
+## This is a CCC test  ##
+#########################
 NAME='icao_pol_2018'
 GROUP='icao'
 CATEGORY='aero'
